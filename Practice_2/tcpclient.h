@@ -7,6 +7,14 @@
 
 const int BUFSIZE = 1024;
 
+#pragma pack(push, 1)
+struct packetST
+{
+    uint32_t length;
+    char str[512];
+};
+#pragma pack(pop)
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class TcpClient; }
@@ -24,13 +32,19 @@ public slots:
     void doConnect();
     void connected();
     void disconnected();
-    void bytesWritten(qint64 bytes);
+
+private slots:
+    void on_connectButton_clicked();
+    void on_messageLine_returnPressed();
+    void on_sendButton_clicked();
+    void on_eraseButton_clicked();
+    void on_exitButton_clicked();
 
 private:
     Ui::TcpClient *ui;
 
     QTcpSocket *socket;
-    char buf[BUFSIZE] = {0,};
+    bool connectFlag = false;
+    char buf[BUFSIZE];
 };
-
 #endif // TCPCLIENT_H

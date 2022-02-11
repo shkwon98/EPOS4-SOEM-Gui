@@ -1,9 +1,9 @@
-#include "tcpclient.h"
-#include "ui_tcpclient.h"
+#include "mainwindow.h"
+#include "ui_mainwindow.h"
 
 TcpClient::TcpClient(QWidget *parent)
     : QMainWindow(parent)
-    , ui(new Ui::TcpClient)
+    , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
     
