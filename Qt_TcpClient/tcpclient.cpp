@@ -6,6 +6,7 @@ TcpClient::TcpClient(QWidget *parent)
     , ui(new Ui::TcpClient)
 {
     ui->setupUi(this);
+    // this->setFixedSize(500, 400);
 }
 
 TcpClient::~TcpClient()
@@ -60,27 +61,22 @@ void TcpClient::on_messageLine_returnPressed()
 
 void TcpClient::on_sendButton_clicked()
 {
-    QString message = ui->messageLine->text();
+    QString qstrMessage = ui->messageLine->text();
 
-    if(!message.isEmpty())
+    if(!qstrMessage.isEmpty())
     {
         if(!connectFlag)
             ui->textBrowser->append("Not connected to server yet");
         else
         {
-            memset(buf, 0, BUFSIZE);
-            strcpy(buf, (char*)message.toStdString().c_str());
-            buf[strlen(buf) - 1] = '\0';
-
-            packetST *pMessage = (packetST*)buf;
-            strcpy(pMessage->str, buf);
-            pMessage->length = strlen(pMessage->str);
-            int total_length = sizeof(pMessage->length) + pMessage->length;
-
-            socket->write((char*)&buf, total_length);
+            memset(msg.str, 0, 512);
+            strcpy(msg.str, qstrMessage.toStdString().c_str());
+            msg.length = strlen(msg.str);
+            int total_length = sizeof(msg.length) + msg.length;
+            socket->write((char*)&msg, total_length);
 
             ui->textBrowser->append("Message: ");
-            ui->textBrowser->insertPlainText(message);
+            ui->textBrowser->insertPlainText(qstrMessage);
             ui->messageLine->clear();
         }
     }

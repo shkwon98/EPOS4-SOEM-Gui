@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>450</width>
-    <height>400</height>
+    <width>502</width>
+    <height>370</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -23,68 +23,76 @@
       <height>21</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <family>Calibri</family>
+      <pointsize>12</pointsize>
+      <italic>true</italic>
+      <bold>true</bold>
+     </font>
+    </property>
     <property name="text">
-     <string>Raspberry Pi</string>
+     <string> EPOS4 Motor Control</string>
     </property>
    </widget>
    <widget class="QLineEdit" name="messageLine">
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>275</y>
-      <width>231</width>
+      <y>280</y>
+      <width>271</width>
       <height>25</height>
      </rect>
     </property>
     <property name="text">
-     <string>Message to send</string>
+     <string>Type your message</string>
     </property>
    </widget>
    <widget class="QPushButton" name="sendButton">
     <property name="geometry">
      <rect>
-      <x>140</x>
+      <x>210</x>
       <y>310</y>
-      <width>112</width>
-      <height>34</height>
+      <width>81</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="text">
-     <string>전송</string>
+     <string>Send</string>
     </property>
    </widget>
    <widget class="QPushButton" name="eraseButton">
     <property name="geometry">
      <rect>
-      <x>20</x>
+      <x>120</x>
       <y>310</y>
-      <width>112</width>
-      <height>34</height>
+      <width>81</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="text">
-     <string>지우기</string>
+     <string>Clear</string>
     </property>
    </widget>
    <widget class="QPushButton" name="exitButton">
     <property name="geometry">
      <rect>
-      <x>320</x>
+      <x>380</x>
       <y>310</y>
-      <width>112</width>
+      <width>101</width>
       <height>34</height>
      </rect>
     </property>
     <property name="text">
-     <string>종료</string>
+     <string>Exit</string>
     </property>
    </widget>
    <widget class="QTextBrowser" name="textBrowser">
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>45</y>
-      <width>411</width>
+      <y>50</y>
+      <width>271</width>
       <height>221</height>
      </rect>
     </property>
@@ -92,14 +100,154 @@
    <widget class="QPushButton" name="connectButton">
     <property name="geometry">
      <rect>
-      <x>320</x>
+      <x>210</x>
       <y>10</y>
-      <width>112</width>
-      <height>34</height>
+      <width>81</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="text">
-     <string>서버 연결</string>
+     <string>Connect</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>310</x>
+      <y>90</y>
+      <width>81</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Amplitude   - </string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>310</x>
+      <y>120</y>
+      <width>81</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Frequency  - </string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_6">
+    <property name="geometry">
+     <rect>
+      <x>310</x>
+      <y>60</y>
+      <width>151</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>Sinusoidal Signal</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_7">
+    <property name="geometry">
+     <rect>
+      <x>310</x>
+      <y>200</y>
+      <width>151</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>Target Mode</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="amplitude">
+    <property name="geometry">
+     <rect>
+      <x>400</x>
+      <y>90</y>
+      <width>61</width>
+      <height>21</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="frequency">
+    <property name="geometry">
+     <rect>
+      <x>400</x>
+      <y>120</y>
+      <width>61</width>
+      <height>21</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="generateButton">
+    <property name="geometry">
+     <rect>
+      <x>380</x>
+      <y>150</y>
+      <width>81</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Generate</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="comboBox">
+    <property name="geometry">
+     <rect>
+      <x>310</x>
+      <y>230</y>
+      <width>111</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <item>
+     <property name="text">
+      <string>Target Velocity</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Target Torque</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QLineEdit" name="targetValue">
+    <property name="geometry">
+     <rect>
+      <x>430</x>
+      <y>230</y>
+      <width>51</width>
+      <height>21</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="activateButton">
+    <property name="geometry">
+     <rect>
+      <x>400</x>
+      <y>260</y>
+      <width>81</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Activate</string>
     </property>
    </widget>
   </widget>
@@ -108,8 +256,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>450</width>
-     <height>30</height>
+     <width>502</width>
+     <height>21</height>
     </rect>
    </property>
   </widget>

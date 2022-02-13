@@ -5,12 +5,10 @@
 #include <QtDebug>
 #include <QTcpSocket>
 
-const int BUFSIZE = 1024;
-
 #pragma pack(push, 1)
 struct packetST
 {
-    uint32_t length;
+    int length;
     char str[512];
 };
 #pragma pack(pop)
@@ -45,6 +43,6 @@ private:
 
     QTcpSocket *socket;
     bool connectFlag = false;
-    char buf[BUFSIZE];
+    packetST msg;
 };
 #endif // TCPCLIENT_H
