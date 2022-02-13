@@ -33,10 +33,13 @@ public slots:
 
 private slots:
     void on_connectButton_clicked();
-    void on_messageLine_returnPressed();
-    void on_sendButton_clicked();
     void on_eraseButton_clicked();
     void on_exitButton_clicked();
+    void on_messageLine_returnPressed();
+    void on_sendButton_clicked();
+    void on_generateButton_clicked();
+    void on_activateButton_clicked();
+    void on_targetMode_currentIndexChanged(int index);
 
 private:
     Ui::TcpClient *ui;
