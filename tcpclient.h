@@ -38,15 +38,16 @@ private slots:
     void on_messageLine_returnPressed();
     void on_sendButton_clicked();
     void on_generateButton_clicked();
-    void on_activateButton_clicked();
     void on_targetMode_currentIndexChanged(int index);
+    void on_activateButton_clicked();
 
 private:
     Ui::TcpClient *ui;
 
     QTcpSocket *socket;
     bool connectFlag = false;
-    QString mode = "modeV";
+    QString mode = "v01";
+    QString value;
     packetST msg;
 };
 #endif // TCPCLIENT_H

@@ -115,9 +115,36 @@ void TcpClient::on_generateButton_clicked()
     }
 }
 
+void TcpClient::on_targetMode_currentIndexChanged(int index)
+{
+    ui->targetValue->setEnabled(true);
+    ui->targetValue->setValue(0);
+    ui->targetValue->setFocus();
+
+    if(ui->targetMode->currentText() == "Velocity")
+    {
+        ui->targetValue->setMinimum(-20000);
+        ui->targetValue->setMaximum(20000);
+        mode = "v01";
+    }
+    else if(ui->targetMode->currentText() == "Torque")
+    {
+        ui->targetValue->setMinimum(-200);
+        ui->targetValue->setMaximum(200);
+        mode = "t01";
+    }
+    else if(ui->targetMode->currentText() == "B&F")
+    {
+        ui->targetValue->clear();
+        ui->targetValue->setDisabled(true);
+        mode = "v02";
+    }
+}
+
 void TcpClient::on_activateButton_clicked()
 {
-    QString qstrMessage = mode + ui->targetValue->text();
+    value = ui->targetValue->text();
+    QString qstrMessage = mode + value;
 
     if(!qstrMessage.isEmpty())
     {
@@ -131,26 +158,8 @@ void TcpClient::on_activateButton_clicked()
             int total_length = sizeof(msg.length) + msg.length;
             socket->write((char*)&msg, total_length);
 
-            ui->textBrowser->append(ui->targetMode->currentText() +": "+ ui->targetValue->text());
+            ui->textBrowser->append("[" + ui->targetMode->currentText()+ "] " + value);
         }
     }
     ui->targetValue->setFocus();
 }
-
-void TcpClient::on_targetMode_currentIndexChanged(int index)
-{
-    ui->targetValue->setValue(0);
-    ui->targetValue->setFocus();
-
-    if(ui->targetMode->currentText() == "Velocity")
-    {
-        ui->targetValue->setMaximum(20000);
-        mode = "modeV";
-    }
-    else
-    {
-        ui->targetValue->setMaximum(200);
-        mode = "modeT";
-    }
-}
-
