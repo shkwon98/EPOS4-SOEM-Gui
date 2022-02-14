@@ -6,7 +6,7 @@ TcpClient::TcpClient(QWidget *parent)
     , ui(new Ui::TcpClient)
 {
     ui->setupUi(this);
-    this->setFixedSize(510, 380);
+//    this->setFixedSize(510, 380);
 }
 
 TcpClient::~TcpClient()
@@ -97,21 +97,19 @@ void TcpClient::on_generateButton_clicked()
 {
     QString qstrMessage = "(" + ui->amplitude->text() + "," + ui->frequency->text() + ")";
 
-    if(!qstrMessage.isEmpty())
+    if(!connectFlag)
+        ui->textBrowser->append("Not connected");
+    else
     {
-        if(!connectFlag)
-            ui->textBrowser->append("Not connected");
-        else
-        {
-            memset(msg.str, 0, 512);
-            strcpy(msg.str, qstrMessage.toStdString().c_str());
-            msg.length = strlen(msg.str);
-            int total_length = sizeof(msg.length) + msg.length;
-            socket->write((char*)&msg, total_length);
+        memset(msg.str, 0, 512);
+        strcpy(msg.str, qstrMessage.toStdString().c_str());
+        msg.length = strlen(msg.str);
+        int total_length = sizeof(msg.length) + msg.length;
+        socket->write((char*)&msg, total_length);
 
-            ui->textBrowser->append("(Amp,Freq) : ");
-            ui->textBrowser->insertPlainText(qstrMessage);
-        }
+        ui->textBrowser->append("(Amp,Freq) : ");
+        ui->textBrowser->insertPlainText(qstrMessage);
+
     }
 }
 
@@ -146,20 +144,81 @@ void TcpClient::on_activateButton_clicked()
     value = ui->targetValue->text();
     QString qstrMessage = mode + value;
 
-    if(!qstrMessage.isEmpty())
+    if(!connectFlag)
+        ui->textBrowser->append("Not connected");
+    else
     {
-        if(!connectFlag)
-            ui->textBrowser->append("Not connected");
-        else
-        {
-            memset(msg.str, 0, 512);
-            strcpy(msg.str, qstrMessage.toStdString().c_str());
-            msg.length = strlen(msg.str);
-            int total_length = sizeof(msg.length) + msg.length;
-            socket->write((char*)&msg, total_length);
+        memset(msg.str, 0, 512);
+        strcpy(msg.str, qstrMessage.toStdString().c_str());
+        msg.length = strlen(msg.str);
+        int total_length = sizeof(msg.length) + msg.length;
+        socket->write((char*)&msg, total_length);
 
-            ui->textBrowser->append("[" + ui->targetMode->currentText()+ "] " + value);
-        }
+        ui->textBrowser->append("[" + ui->targetMode->currentText()+ "] " + value);
     }
     ui->targetValue->setFocus();
+}
+
+void TcpClient::on_dial_valueChanged(int value)
+{
+    ui->velocity->setText(QString::number(value));
+}
+
+void TcpClient::on_cwButton_pressed()
+{
+    mode = "v01";
+    value = ui->velocity->text();
+    QString qstrMessage = mode + value;
+
+    if(!connectFlag)
+        ui->textBrowser->append("Not connected");
+    else
+    {
+        memset(msg.str, 0, 512);
+        strcpy(msg.str, qstrMessage.toStdString().c_str());
+        msg.length = strlen(msg.str);
+        int total_length = sizeof(msg.length) + msg.length;
+        socket->write((char*)&msg, total_length);
+    }
+}
+
+void TcpClient::on_cwButton_released()
+{
+    mode = "v01";
+    value = "0";
+    QString qstrMessage = mode + value;
+
+    if(!connectFlag)
+        ui->textBrowser->append("Not connected");
+    else
+    {
+        memset(msg.str, 0, 512);
+        strcpy(msg.str, qstrMessage.toStdString().c_str());
+        msg.length = strlen(msg.str);
+        int total_length = sizeof(msg.length) + msg.length;
+        socket->write((char*)&msg, total_length);
+    }
+}
+
+void TcpClient::on_ccwButton_pressed()
+{
+    mode = "v01";
+    value = "-" + ui->velocity->text();
+    QString qstrMessage = mode + value;
+
+    if(!connectFlag)
+        ui->textBrowser->append("Not connected");
+    else
+    {
+        memset(msg.str, 0, 512);
+        strcpy(msg.str, qstrMessage.toStdString().c_str());
+        msg.length = strlen(msg.str);
+        int total_length = sizeof(msg.length) + msg.length;
+        socket->write((char*)&msg, total_length);
+    }
+}
+
+void TcpClient::on_ccwButton_released()
+{
+    on_cwButton_released();
 }
