@@ -46,6 +46,7 @@ private:
 
     QTcpSocket *socket;
     bool connectFlag = false;
+    QString mode = "modeV";
     packetST msg;
 };
 #endif // TCPCLIENT_H

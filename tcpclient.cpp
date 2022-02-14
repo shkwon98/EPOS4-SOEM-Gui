@@ -6,7 +6,7 @@ TcpClient::TcpClient(QWidget *parent)
     , ui(new Ui::TcpClient)
 {
     ui->setupUi(this);
-    this->setFixedSize(470, 350);
+    this->setFixedSize(510, 380);
 }
 
 TcpClient::~TcpClient()
@@ -20,7 +20,6 @@ void TcpClient::doConnect()
 
     connect(socket, SIGNAL(connected()),this, SLOT(connected()));
     connect(socket, SIGNAL(disconnected()),this, SLOT(disconnected()));
-    connect(socket, SIGNAL(bytesWritten(qint64)),this, SLOT(bytesWritten(qint64)));
 
     socket->connectToHost("192.168.0.10", 2000);
     connectFlag = socket-> waitForConnected();
@@ -77,7 +76,7 @@ void TcpClient::on_sendButton_clicked()
     if(!qstrMessage.isEmpty())
     {
         if(!connectFlag)
-            ui->textBrowser->append("Not connected to server yet");
+            ui->textBrowser->append("Not connected");
         else
         {
             memset(msg.str, 0, 512);
@@ -101,7 +100,7 @@ void TcpClient::on_generateButton_clicked()
     if(!qstrMessage.isEmpty())
     {
         if(!connectFlag)
-            ui->textBrowser->append("Not connected to server yet");
+            ui->textBrowser->append("Not connected");
         else
         {
             memset(msg.str, 0, 512);
@@ -118,12 +117,12 @@ void TcpClient::on_generateButton_clicked()
 
 void TcpClient::on_activateButton_clicked()
 {
-    QString qstrMessage = ui->targetMode->currentText() +": "+ ui->targetValue->text();
+    QString qstrMessage = mode + ui->targetValue->text();
 
     if(!qstrMessage.isEmpty())
     {
         if(!connectFlag)
-            ui->textBrowser->append("Not connected to server yet");
+            ui->textBrowser->append("Not connected");
         else
         {
             memset(msg.str, 0, 512);
@@ -132,7 +131,7 @@ void TcpClient::on_activateButton_clicked()
             int total_length = sizeof(msg.length) + msg.length;
             socket->write((char*)&msg, total_length);
 
-            ui->textBrowser->append(qstrMessage);
+            ui->textBrowser->append(ui->targetMode->currentText() +": "+ ui->targetValue->text());
         }
     }
     ui->targetValue->setFocus();
@@ -146,10 +145,12 @@ void TcpClient::on_targetMode_currentIndexChanged(int index)
     if(ui->targetMode->currentText() == "Velocity")
     {
         ui->targetValue->setMaximum(20000);
+        mode = "modeV";
     }
     else
     {
         ui->targetValue->setMaximum(200);
+        mode = "modeT";
     }
 }
 
