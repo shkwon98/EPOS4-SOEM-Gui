@@ -64,6 +64,7 @@ void TcpClient::on_exitButton_clicked()
     this->close();
 }
 
+
 void TcpClient::on_messageLine_returnPressed()
 {
     on_sendButton_clicked();
@@ -93,9 +94,15 @@ void TcpClient::on_sendButton_clicked()
     ui->messageLine->setFocus();
 }
 
+QString TcpClient::value(QString num)
+{
+    return QString("%1").arg(num.toInt(), 8, 10, QLatin1Char('0'));
+}
+
 void TcpClient::on_generateButton_clicked()
 {
-    QString qstrMessage = "(" + ui->amplitude->text() + "," + ui->frequency->text() + ")";
+    mode = "s001";
+    QString qstrMessage = mode + value(ui->amplitude->text()) + value(ui->frequency->text());
 
     if(!connectFlag)
         ui->textBrowser->append("Not connected");
@@ -107,9 +114,7 @@ void TcpClient::on_generateButton_clicked()
         int total_length = sizeof(msg.length) + msg.length;
         socket->write((char*)&msg, total_length);
 
-        ui->textBrowser->append("(Amp,Freq) : ");
-        ui->textBrowser->insertPlainText(qstrMessage);
-
+        ui->textBrowser->append("(Amp, Freq) : (" + ui->amplitude->text() + ", " + ui->frequency->text() + ")");
     }
 }
 
@@ -123,26 +128,31 @@ void TcpClient::on_targetMode_currentIndexChanged(int index)
     {
         ui->targetValue->setMinimum(-20000);
         ui->targetValue->setMaximum(20000);
-        mode = "v01";
     }
     else if(ui->targetMode->currentText() == "Torque")
     {
         ui->targetValue->setMinimum(-200);
         ui->targetValue->setMaximum(200);
-        mode = "t01";
     }
     else if(ui->targetMode->currentText() == "B&F")
     {
         ui->targetValue->clear();
         ui->targetValue->setDisabled(true);
-        mode = "v02";
     }
 }
 
 void TcpClient::on_activateButton_clicked()
 {
-    value = ui->targetValue->text();
-    QString qstrMessage = mode + value;
+    if(ui->targetMode->currentText() == "Velocity")
+        mode = "v001";
+
+    else if(ui->targetMode->currentText() == "Torque")
+        mode = "t001";
+
+    else if(ui->targetMode->currentText() == "B&F")
+        mode = "v002";
+
+    QString qstrMessage = mode + value(ui->targetValue->text());
 
     if(!connectFlag)
         ui->textBrowser->append("Not connected");
@@ -154,7 +164,7 @@ void TcpClient::on_activateButton_clicked()
         int total_length = sizeof(msg.length) + msg.length;
         socket->write((char*)&msg, total_length);
 
-        ui->textBrowser->append("[" + ui->targetMode->currentText()+ "] " + value);
+        ui->textBrowser->append("[" + ui->targetMode->currentText()+ "] " + value(ui->targetValue->text()));
     }
     ui->targetValue->setFocus();
 }
@@ -166,9 +176,8 @@ void TcpClient::on_dial_valueChanged(int value)
 
 void TcpClient::on_cwButton_pressed()
 {
-    mode = "v01";
-    value = ui->velocity->text();
-    QString qstrMessage = mode + value;
+    mode = "v001";
+    QString qstrMessage = mode + value(ui->velocity->text());
 
     if(!connectFlag)
         ui->textBrowser->append("Not connected");
@@ -184,9 +193,8 @@ void TcpClient::on_cwButton_pressed()
 
 void TcpClient::on_cwButton_released()
 {
-    mode = "v01";
-    value = "0";
-    QString qstrMessage = mode + value;
+    mode = "v001";
+    QString qstrMessage = mode + value("0");
 
     if(!connectFlag)
         ui->textBrowser->append("Not connected");
@@ -202,9 +210,8 @@ void TcpClient::on_cwButton_released()
 
 void TcpClient::on_ccwButton_pressed()
 {
-    mode = "v01";
-    value = "-" + ui->velocity->text();
-    QString qstrMessage = mode + value;
+    mode = "v001";
+    QString qstrMessage = mode + value("-" + ui->velocity->text());
 
     if(!connectFlag)
         ui->textBrowser->append("Not connected");

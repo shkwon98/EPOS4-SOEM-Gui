@@ -55,8 +55,8 @@ private:
 
     QTcpSocket *socket;
     bool connectFlag = false;
-    QString mode = "v01";
-    QString value;
     packetST msg;
+    QString mode = "v01";
+    QString value(QString num);
 };
 #endif // TCPCLIENT_H
