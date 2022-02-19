@@ -2,10 +2,10 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-
 #include <QtNetwork>
-
-#include "ctcp_packet.h"
+#include "Macro.h"
+#include "tcp_packet.h"
+//#include "udp_packet.h"
 
 
 QT_BEGIN_NAMESPACE
@@ -22,8 +22,17 @@ public:
 
     void AppendText(QString str);
 
+    template<class T>
+    void decode(T &val)
+    {
+        memcpy(&val, &packetBuffer[decodeIndex], sizeof(val));
+        decodeIndex = decodeIndex + sizeof(val);
+    }
+
 private slots:
-    void on_connectButton_clicked();
+    void readPacket();
+
+    void on_tcpConnectButton_clicked();
     void on_exitButton_clicked();
 
     void on_stopButton_clicked();
@@ -31,7 +40,6 @@ private slots:
     void on_targetMode_currentIndexChanged(int index);
     void on_activateButton_clicked();
 
-    void on_dial_valueChanged(int value);
     void on_cwButton_pressed();
     void on_ccwButton_pressed();
     void on_cwButton_released();
@@ -39,14 +47,18 @@ private slots:
 
     void on_generateButton_clicked();
 
+
 private:
     Ui::MainWindow *ui;
 
-    QTcpSocket *tcpClient;
-
-    CTCP_Packet *pTcpPacket;
-
+    TCP_Packet *pTcpPacket;
     bool connectFlag = false;
-    uint16_t header;
+
+    //    UDP_Packet *pUdpPacket;
+    QUdpSocket *UdpSocket;
+    short header;
+    int decodeIndex;
+    unsigned char rxBuffer[RX_BUFFER_SIZE];
+    unsigned char packetBuffer[PACKET_BUFFER_SIZE];
 };
 #endif // MAINWINDOW_H

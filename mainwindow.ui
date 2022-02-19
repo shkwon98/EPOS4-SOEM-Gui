@@ -6,32 +6,19 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>733</width>
-    <height>402</height>
+    <width>716</width>
+    <height>299</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="ccwButton">
-    <property name="geometry">
-     <rect>
-      <x>537</x>
-      <y>242</y>
-      <width>71</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>&lt;--</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="exitButton">
     <property name="geometry">
      <rect>
-      <x>397</x>
-      <y>312</y>
+      <x>580</x>
+      <y>10</y>
       <width>101</width>
       <height>31</height>
      </rect>
@@ -40,177 +27,19 @@
      <string>Exit</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_2">
-    <property name="geometry">
-     <rect>
-      <x>320</x>
-      <y>60</y>
-      <width>201</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>맑은 고딕</family>
-      <pointsize>10</pointsize>
-      <weight>75</weight>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="text">
-     <string>Sinusoidal Signal</string>
-    </property>
-   </widget>
-   <widget class="QSpinBox" name="frequency">
-    <property name="geometry">
-     <rect>
-      <x>440</x>
-      <y>126</y>
-      <width>61</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_3">
-    <property name="geometry">
-     <rect>
-      <x>320</x>
-      <y>96</y>
-      <width>131</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Amplitude   - </string>
-    </property>
-   </widget>
-   <widget class="QDial" name="dial">
-    <property name="geometry">
-     <rect>
-      <x>557</x>
-      <y>92</y>
-      <width>121</width>
-      <height>111</height>
-     </rect>
-    </property>
-    <property name="minimum">
-     <number>0</number>
-    </property>
-    <property name="maximum">
-     <number>20000</number>
-    </property>
-    <property name="singleStep">
-     <number>1000</number>
-    </property>
-    <property name="pageStep">
-     <number>2000</number>
-    </property>
-   </widget>
-   <widget class="QSpinBox" name="amplitude">
-    <property name="geometry">
-     <rect>
-      <x>440</x>
-      <y>96</y>
-      <width>61</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-    </property>
-    <property name="maximum">
-     <number>20000</number>
-    </property>
-   </widget>
-   <widget class="QSpinBox" name="targetValue">
-    <property name="geometry">
-     <rect>
-      <x>430</x>
-      <y>230</y>
-      <width>71</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-    </property>
-    <property name="minimum">
-     <number>-20000</number>
-    </property>
-    <property name="maximum">
-     <number>20000</number>
-    </property>
-    <property name="value">
-     <number>0</number>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_6">
-    <property name="geometry">
-     <rect>
-      <x>553</x>
-      <y>204</y>
-      <width>41</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Vel:</string>
-    </property>
-   </widget>
-   <widget class="QComboBox" name="targetMode">
-    <property name="geometry">
-     <rect>
-      <x>320</x>
-      <y>230</y>
-      <width>101</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <item>
-     <property name="text">
-      <string>Velocity</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Torque</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>B&amp;F</string>
-     </property>
-    </item>
-   </widget>
-   <widget class="QPushButton" name="generateButton">
-    <property name="geometry">
-     <rect>
-      <x>410</x>
-      <y>156</y>
-      <width>91</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Generate</string>
-    </property>
-   </widget>
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>29</x>
-      <y>28</y>
+      <x>30</x>
+      <y>10</y>
       <width>261</width>
-      <height>21</height>
+      <height>31</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <family>맑은 고딕</family>
-      <pointsize>12</pointsize>
+      <family>Noto Sans CJK KR</family>
+      <pointsize>13</pointsize>
       <weight>75</weight>
       <italic>false</italic>
       <bold>true</bold>
@@ -220,68 +49,36 @@
      <string>EPOS4 Motor Control</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="cwButton">
+   <widget class="QTextBrowser" name="inputBrowser">
     <property name="geometry">
      <rect>
-      <x>627</x>
-      <y>242</y>
-      <width>71</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>--&gt;</string>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="velocity">
-    <property name="geometry">
-     <rect>
-      <x>597</x>
-      <y>202</y>
-      <width>71</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>0</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-    </property>
-    <property name="readOnly">
-     <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QTextBrowser" name="textBrowser">
-    <property name="geometry">
-     <rect>
-      <x>27</x>
-      <y>58</y>
-      <width>271</width>
-      <height>221</height>
+      <x>430</x>
+      <y>70</y>
+      <width>251</width>
+      <height>101</height>
      </rect>
     </property>
    </widget>
-   <widget class="QPushButton" name="connectButton">
+   <widget class="QPushButton" name="tcpConnectButton">
     <property name="geometry">
      <rect>
-      <x>423</x>
-      <y>19</y>
-      <width>81</width>
+      <x>430</x>
+      <y>10</y>
+      <width>131</width>
       <height>31</height>
      </rect>
     </property>
     <property name="text">
-     <string>Connect</string>
+     <string>TCP/IP Connect</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_5">
+   <widget class="QLabel" name="label_7">
     <property name="geometry">
      <rect>
-      <x>318</x>
-      <y>192</y>
-      <width>151</width>
-      <height>31</height>
+      <x>430</x>
+      <y>50</y>
+      <width>91</width>
+      <height>20</height>
      </rect>
     </property>
     <property name="font">
@@ -293,47 +90,298 @@
      </font>
     </property>
     <property name="text">
-     <string>Target Mode</string>
+     <string>Input Status</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_4">
+   <widget class="QLabel" name="label_8">
     <property name="geometry">
      <rect>
-      <x>320</x>
-      <y>126</y>
-      <width>121</width>
+      <x>430</x>
+      <y>184</y>
+      <width>141</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>맑은 고딕</family>
+      <pointsize>10</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>Motor Actual Status</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_10">
+    <property name="geometry">
+     <rect>
+      <x>440</x>
+      <y>206</y>
+      <width>81</width>
       <height>21</height>
      </rect>
     </property>
     <property name="text">
-     <string>Frequency  - </string>
+     <string>Velocity</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="activateButton">
+   <widget class="QLabel" name="label_11">
     <property name="geometry">
      <rect>
-      <x>410</x>
-      <y>260</y>
-      <width>91</width>
-      <height>31</height>
+      <x>570</x>
+      <y>206</y>
+      <width>81</width>
+      <height>21</height>
      </rect>
     </property>
     <property name="text">
-     <string>Activate</string>
+     <string>Torque</string>
     </property>
+   </widget>
+   <widget class="QLineEdit" name="actualVelocity">
+    <property name="geometry">
+     <rect>
+      <x>440</x>
+      <y>230</y>
+      <width>101</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="actualTorque">
+    <property name="geometry">
+     <rect>
+      <x>570</x>
+      <y>230</y>
+      <width>101</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QWidget" name="">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>50</y>
+      <width>172</width>
+      <height>85</height>
+     </rect>
+    </property>
+    <layout class="QFormLayout" name="formLayout_2">
+     <item row="0" column="0" colspan="2">
+      <widget class="QLabel" name="label_5">
+       <property name="font">
+        <font>
+         <family>맑은 고딕</family>
+         <pointsize>10</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>Target Mode Control</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QComboBox" name="targetMode">
+       <item>
+        <property name="text">
+         <string>Velocity</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Torque</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>B&amp;F</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QSpinBox" name="targetValue">
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+       <property name="minimum">
+        <number>-20000</number>
+       </property>
+       <property name="maximum">
+        <number>20000</number>
+       </property>
+       <property name="value">
+        <number>0</number>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="0" colspan="2">
+      <widget class="QPushButton" name="activateButton">
+       <property name="text">
+        <string>Activate</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="">
+    <property name="geometry">
+     <rect>
+      <x>230</x>
+      <y>50</y>
+      <width>172</width>
+      <height>117</height>
+     </rect>
+    </property>
+    <layout class="QFormLayout" name="formLayout">
+     <item row="0" column="0" colspan="2">
+      <widget class="QLabel" name="label_2">
+       <property name="font">
+        <font>
+         <family>맑은 고딕</family>
+         <pointsize>10</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>Sinusoidal Signal</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="label_3">
+       <property name="text">
+        <string>Amplitude   - </string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QSpinBox" name="amplitude">
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+       <property name="maximum">
+        <number>20000</number>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="0">
+      <widget class="QLabel" name="label_4">
+       <property name="text">
+        <string>Frequency  - </string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1">
+      <widget class="QSpinBox" name="frequency">
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="0" colspan="2">
+      <widget class="QPushButton" name="generateButton">
+       <property name="text">
+        <string>Generate</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </widget>
    <widget class="QPushButton" name="stopButton">
     <property name="geometry">
      <rect>
-      <x>190</x>
-      <y>310</y>
-      <width>112</width>
-      <height>34</height>
+      <x>250</x>
+      <y>190</y>
+      <width>131</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="text">
      <string>Stop</string>
     </property>
+   </widget>
+   <widget class="QWidget" name="">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>170</y>
+      <width>168</width>
+      <height>85</height>
+     </rect>
+    </property>
+    <layout class="QFormLayout" name="formLayout_3">
+     <item row="0" column="0" colspan="2">
+      <widget class="QLabel" name="label_9">
+       <property name="font">
+        <font>
+         <family>맑은 고딕</family>
+         <pointsize>10</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>Mouse Control</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="label_6">
+       <property name="text">
+        <string>Velocity  - </string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QSpinBox" name="velocity">
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+       <property name="minimum">
+        <number>-20000</number>
+       </property>
+       <property name="maximum">
+        <number>20000</number>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="0">
+      <widget class="QPushButton" name="ccwButton">
+       <property name="text">
+        <string>&lt;--</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1">
+      <widget class="QPushButton" name="cwButton">
+       <property name="text">
+        <string>--&gt;</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -341,13 +389,30 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>733</width>
-     <height>30</height>
+     <width>716</width>
+     <height>22</height>
     </rect>
    </property>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
+ <tabstops>
+  <tabstop>targetMode</tabstop>
+  <tabstop>targetValue</tabstop>
+  <tabstop>activateButton</tabstop>
+  <tabstop>velocity</tabstop>
+  <tabstop>ccwButton</tabstop>
+  <tabstop>cwButton</tabstop>
+  <tabstop>amplitude</tabstop>
+  <tabstop>frequency</tabstop>
+  <tabstop>generateButton</tabstop>
+  <tabstop>stopButton</tabstop>
+  <tabstop>tcpConnectButton</tabstop>
+  <tabstop>exitButton</tabstop>
+  <tabstop>inputBrowser</tabstop>
+  <tabstop>actualVelocity</tabstop>
+  <tabstop>actualTorque</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

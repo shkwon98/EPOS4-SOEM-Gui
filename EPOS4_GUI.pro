@@ -17,13 +17,16 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    ctcp_packet.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    tcp_packet.cpp \
+    udp_packet.cpp
 
 HEADERS += \
-    ctcp_packet.h \
-    mainwindow.h
+    Macro.h \
+    mainwindow.h \
+    tcp_packet.h \
+    udp_packet.h
 
 FORMS += \
     mainwindow.ui

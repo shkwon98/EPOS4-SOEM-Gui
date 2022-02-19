@@ -8,11 +8,27 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 //    this->setFixedSize(510, 380);
 
-    pTcpPacket = new CTCP_Packet();
+    pTcpPacket = new TCP_Packet();
+
+    UdpSocket = new QUdpSocket();
+//    UdpSocket->bind(QHostAddress::Any, UDP_PORT);
+
+    QHostAddress Raspberry_Pi_Address;
+    Raspberry_Pi_Address.setAddress(RASPBERRY_PI_IP);
+    UdpSocket->bind(Raspberry_Pi_Address, UDP_PORT);
+    connect(UdpSocket,SIGNAL(readyRead()),this,SLOT(readPacket()));
 }
 
 MainWindow::~MainWindow()
 {
+    if(UdpSocket->isOpen())
+    {
+        UdpSocket->disconnectFromHost();
+        UdpSocket->close();
+        UdpSocket->abort();
+    }
+
+    delete pTcpPacket;
     delete ui;
 }
 
@@ -22,20 +38,62 @@ void MainWindow::AppendText(QString str)
 
     appendStr.append(str);
 
-    ui->textBrowser->append(appendStr);
+    ui->inputBrowser->append(appendStr);
 
 //    static int lineCnt = 0;
 //    lineCnt++;
 
 //    if(lineCnt > 50)
 //    {
-//        ui->textBrowser->clear();
+//        ui->inputBrowser->clear();
 //        lineCnt = 0;
 //    }
 }
 
+void MainWindow::readPacket()
+{
+    QByteArray rxData;
+    QHostAddress sender;
+    uint16_t senderPort;
 
-void MainWindow::on_connectButton_clicked()
+    while(UdpSocket->hasPendingDatagrams())
+    {
+        rxData.fill(0, UdpSocket->pendingDatagramSize());
+        UdpSocket->readDatagram(rxData.data(), rxData.size(), &sender, &senderPort);
+
+        memcpy(rxBuffer, rxData.data(), rxData.size());
+
+        for (int i = 0; i < RX_BUFFER_SIZE; i++)
+        {
+            if (rxBuffer[i] == 13 && rxBuffer[i + 1] == 10)
+            {
+                memcpy(packetBuffer, &rxBuffer[i + 2], sizeof(packetBuffer));
+                break;
+            }
+        }
+
+        header = 0;
+        decodeIndex = 2;
+
+        memcpy(&header, &packetBuffer[0], sizeof(short));
+
+        switch(header)
+        {
+        case(1):
+            int velocity;
+            int16_t torque;
+
+            this->decode(velocity);
+            this->decode(torque);
+
+            ui->actualVelocity->setText(QString::number(velocity));
+            ui->actualTorque->setText(QString::number(torque));
+            break;
+        }
+    }
+}
+
+void MainWindow::on_tcpConnectButton_clicked()
 {
     connectFlag = pTcpPacket->connect();
 
@@ -56,7 +114,7 @@ void MainWindow::on_stopButton_clicked()
         AppendText("Not connected");
     else
     {
-        header = 0000;
+        short header = 0000;
         int iData = 0;
 
         pTcpPacket->setCommandHeader(header);
@@ -94,13 +152,16 @@ void MainWindow::on_activateButton_clicked()
     if(!connectFlag)
         AppendText("Not connected");
     else
-    {
+    {   short header;
+
         if(ui->targetMode->currentText() == "Velocity")
             header = 0001;
         else if(ui->targetMode->currentText() == "Torque")
             header = 0002;
         else if(ui->targetMode->currentText() == "B&F")
             header = 0003;
+        else
+            header = 0000;
 
         int iData = ui->targetValue->text().toInt();
 
@@ -113,18 +174,13 @@ void MainWindow::on_activateButton_clicked()
     ui->targetValue->setFocus();
 }
 
-void MainWindow::on_dial_valueChanged(int value)
-{
-    ui->velocity->setText(QString::number(value));
-}
-
 void MainWindow::on_cwButton_pressed()
 {
     if(!connectFlag)
         AppendText("Not connected");
     else
     {
-        header = 0001;
+        short header = 0001;
         int iData = ui->velocity->text().toInt();
 
         pTcpPacket->setCommandHeader(header);
@@ -138,7 +194,7 @@ void MainWindow::on_ccwButton_pressed()
         AppendText("Not connected");
     else
     {
-        header = 0001;
+        short header = 0001;
         int iData = ui->velocity->text().toInt() * (-1);
 
         pTcpPacket->setCommandHeader(header);
@@ -161,7 +217,7 @@ void MainWindow::on_generateButton_clicked()
         AppendText("Not connected");
     else
     {
-        header = 0004;
+        short header = 0004;
 
         SINUSOIDAL sineData;
         sineData.amplitude = ui->amplitude->text().toInt();
@@ -175,4 +231,3 @@ void MainWindow::on_generateButton_clicked()
         AppendText("(Amp, Freq) : (" + ui->amplitude->text() + ", " + ui->frequency->text() + ")");
     }
 }
-
