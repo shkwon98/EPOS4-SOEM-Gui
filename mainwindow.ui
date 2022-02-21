@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>530</width>
-    <height>530</height>
+    <height>625</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -274,6 +274,11 @@
        </item>
        <item>
         <property name="text">
+         <string>Position</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
          <string>B&amp;F</string>
         </property>
        </item>
@@ -392,6 +397,80 @@
       </widget>
      </item>
     </layout>
+   </widget>
+   <widget class="QPushButton" name="pushButton_Data_Logging">
+    <property name="geometry">
+     <rect>
+      <x>360</x>
+      <y>500</y>
+      <width>141</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Data Logging</string>
+    </property>
+   </widget>
+   <widget class="QTextEdit" name="textEdit_LogFileName">
+    <property name="geometry">
+     <rect>
+      <x>187</x>
+      <y>483</y>
+      <width>143</width>
+      <height>32</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_13">
+    <property name="geometry">
+     <rect>
+      <x>41</x>
+      <y>529</y>
+      <width>133</width>
+      <height>18</height>
+     </rect>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::LeftToRight</enum>
+    </property>
+    <property name="text">
+     <string>Logging Time : </string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+    </property>
+   </widget>
+   <widget class="QTextEdit" name="textEdit_LogTimer">
+    <property name="geometry">
+     <rect>
+      <x>187</x>
+      <y>521</y>
+      <width>143</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_12">
+    <property name="geometry">
+     <rect>
+      <x>41</x>
+      <y>491</y>
+      <width>140</width>
+      <height>18</height>
+     </rect>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::LeftToRight</enum>
+    </property>
+    <property name="text">
+     <string>Log File Name : </string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">

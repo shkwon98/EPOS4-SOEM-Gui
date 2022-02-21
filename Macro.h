@@ -18,6 +18,7 @@ typedef struct
 {
     int amplitude;
     int frequency;
+
 }SINUSOIDAL;
 
 typedef struct {
@@ -27,5 +28,27 @@ typedef struct {
     int16_t torque_actual_value;
 
 }LOG_DATA;
+
+#define LOG_DATA_SIZE sizeof(LOG_DATA)
+
+
+////////////////////////////////////////////////////
+///////////////// GUI PC ----> RPI /////////////////
+////////////////////////////////////////////////////
+
+#define COMMAND_MODE_CSV                        0x0001 // Cyclic Synchronous Velocity Mode
+#define COMMAND_MODE_CST                        0x0002 // Cyclic Synchronous Torque Mode
+#define COMMAND_MODE_PPM                        0x0003 // Profile Position Mode
+#define COMMAND_MODE_SINUSOIDAL_VELOCITY        0x0004
+#define COMMAND_MODE_BACK_AND_FORTH_VELOCITY    0x0005
+
+
+////////////////////////////////////////////////////
+///////////////// RPI ----> GUI PC /////////////////
+////////////////////////////////////////////////////
+
+ #define STREAM_MODE            0x0001
+// #define
+
 
 #endif // MACRO_H

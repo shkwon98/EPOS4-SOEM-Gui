@@ -3,7 +3,11 @@
 
 #include <QMainWindow>
 #include <QtNetwork>
+
 #include "Macro.h"
+
+#include "cdatalogger.h"
+
 #include "tcp_packet.h"
 //#include "udp_packet.h"
 
@@ -49,6 +53,8 @@ private slots:
     void on_generateButton_clicked();
 
 
+    void on_pushButton_Data_Logging_clicked();
+
 private:
     Ui::MainWindow *ui;
 
@@ -64,6 +70,8 @@ private:
     int rxCount = 0;
 
     LOG_DATA logData;
-
+    bool bRegLogging = false;
+    CDataLogger mDataLogger;
+    bool bLogCheck;
 };
 #endif // MAINWINDOW_H
