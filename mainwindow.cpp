@@ -65,16 +65,12 @@ void MainWindow::readPacket()
         switch(header)
         {
         case(1):
-            int velocity_actual_value;
-            int16_t torque_actual_value;
-
-            this->decode(velocity_actual_value);
-            this->decode(torque_actual_value);
+            this->decode(logData);
 
             if(rxCount == (1000/30))    // 1kHz --> 30Hz
             {
-                ui->actualVelocity->setText(QString::number(velocity_actual_value));
-                ui->actualTorque->setText(QString::number(torque_actual_value));
+                ui->actualVelocity->setText(QString::number(logData.velocity_actual_value));
+                ui->actualTorque->setText(QString::number(logData.torque_actual_value));
                 rxCount = 0;
             }
             break;
