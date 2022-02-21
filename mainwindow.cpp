@@ -71,10 +71,16 @@ void MainWindow::readPacket()
             this->decode(velocity_actual_value);
             this->decode(torque_actual_value);
 
-            ui->actualVelocity->setText(QString::number(velocity_actual_value));
-            ui->actualTorque->setText(QString::number(torque_actual_value));
+            if(rxCount == (1000/30))    // 1kHz --> 30Hz
+            {
+                ui->actualVelocity->setText(QString::number(velocity_actual_value));
+                ui->actualTorque->setText(QString::number(torque_actual_value));
+                rxCount = 0;
+            }
             break;
         }
+
+        rxCount++;
     }
 }
 

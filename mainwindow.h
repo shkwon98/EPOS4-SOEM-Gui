@@ -61,5 +61,7 @@ private:
     int decodeIndex;
     unsigned char rxBuffer[RX_BUFFER_SIZE];
     unsigned char packetBuffer[PACKET_BUFFER_SIZE];
+
+    int rxCount = 0;
 };
 #endif // MAINWINDOW_H
