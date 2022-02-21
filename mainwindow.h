@@ -31,6 +31,7 @@ public:
 
 private slots:
     void readPacket();
+    void on_udpButton_clicked(bool checked);
 
     void on_tcpConnectButton_clicked();
     void on_exitButton_clicked();

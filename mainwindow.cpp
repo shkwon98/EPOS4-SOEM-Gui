@@ -6,28 +6,13 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-//    this->setFixedSize(510, 380);
+    this->setFixedSize(530, 510);
 
     pTcpPacket = new TCP_Packet();
-
-    UdpSocket = new QUdpSocket();
-//    UdpSocket->bind(QHostAddress::Any, UDP_PORT);
-
-    QHostAddress Raspberry_Pi_Address;
-    Raspberry_Pi_Address.setAddress(RASPBERRY_PI_IP);
-    UdpSocket->bind(Raspberry_Pi_Address, UDP_PORT);
-    connect(UdpSocket,SIGNAL(readyRead()),this,SLOT(readPacket()));
 }
 
 MainWindow::~MainWindow()
 {
-    if(UdpSocket->isOpen())
-    {
-        UdpSocket->disconnectFromHost();
-        UdpSocket->close();
-        UdpSocket->abort();
-    }
-
     delete pTcpPacket;
     delete ui;
 }
@@ -80,16 +65,38 @@ void MainWindow::readPacket()
         switch(header)
         {
         case(1):
-            int velocity;
-            int16_t torque;
+            int velocity_actual_value;
+            int16_t torque_actual_value;
 
-            this->decode(velocity);
-            this->decode(torque);
+            this->decode(velocity_actual_value);
+            this->decode(torque_actual_value);
 
-            ui->actualVelocity->setText(QString::number(velocity));
-            ui->actualTorque->setText(QString::number(torque));
+            ui->actualVelocity->setText(QString::number(velocity_actual_value));
+            ui->actualTorque->setText(QString::number(torque_actual_value));
             break;
         }
+    }
+}
+
+void MainWindow::on_udpButton_clicked(bool checked)
+{
+    if(checked)
+    {
+        UdpSocket = new QUdpSocket();
+
+        //    UdpSocket->bind(QHostAddress::Any, UDP_PORT);
+        QHostAddress GUI_PC_Address;
+        GUI_PC_Address.setAddress(QStringLiteral(GUI_PC_IP));
+        UdpSocket->bind(GUI_PC_Address, UDP_PORT);
+
+        connect(UdpSocket,SIGNAL(readyRead()),this,SLOT(readPacket()));
+    }
+    else
+    {
+        delete UdpSocket;
+
+        ui->actualVelocity->setText(" --- ");
+        ui->actualTorque->setText(" --- ");
     }
 }
 
