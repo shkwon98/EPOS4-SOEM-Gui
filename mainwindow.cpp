@@ -10,12 +10,17 @@ MainWindow::MainWindow(QWidget *parent)
 
     pTcpPacket = new TCP_Packet();
 }
-
 MainWindow::~MainWindow()
 {
     delete pTcpPacket;
     delete ui;
 }
+
+void MainWindow::on_exitButton_clicked()
+{
+    this->close();
+}
+
 
 void MainWindow::AppendText(QString str)
 {
@@ -55,9 +60,9 @@ void MainWindow::on_udpButton_clicked(bool checked)
 
         ui->actualVelocity->setText(" --- ");
         ui->actualTorque->setText(" --- ");
+        ui->actualPosition->setText(" --- ");
     }
 }
-
 void MainWindow::on_tcpConnectButton_clicked()
 {
     connectFlag = pTcpPacket->connect();
@@ -68,10 +73,6 @@ void MainWindow::on_tcpConnectButton_clicked()
         AppendText("Raspberry Pi Connect Fail!");
 }
 
-void MainWindow::on_exitButton_clicked()
-{
-    this->close();
-}
 
 void MainWindow::on_stopButton_clicked()
 {
@@ -79,107 +80,79 @@ void MainWindow::on_stopButton_clicked()
         AppendText("Not connected");
     else
     {
-        short header = 0000;
-        int iData = 0;
+        short header = COMMAND_MODE_STOP_MOTOR;
 
         pTcpPacket->setCommandHeader(header);
-        pTcpPacket->encode(iData);
         pTcpPacket->sendPacket();
+
+        AppendText("[Stop Motor]");
     }
 }
-
-
-void MainWindow::on_targetMode_currentIndexChanged(int index)
-{
-    ui->targetValue->setEnabled(true);
-    ui->targetValue->setValue(0);
-    ui->targetValue->setFocus();
-
-    if(ui->targetMode->currentText() == "Velocity")
-    {
-        ui->targetValue->setRange(-20000, 20000);
-    }
-    else if(ui->targetMode->currentText() == "Torque")
-    {
-        ui->targetValue->setRange(-200, 200);
-    }
-    else if(ui->targetMode->currentText() == "Position")
-    {
-        ui->targetValue->setRange(-99999,99999);
-    }
-    else if(ui->targetMode->currentText() == "B&F")
-    {
-        ui->targetValue->clear();
-        ui->targetValue->setDisabled(true);
-    }
-}
-
-void MainWindow::on_activateButton_clicked()
+void MainWindow::on_setZeroButton_clicked()
 {
     if(!connectFlag)
         AppendText("Not connected");
     else
-    {   short header;
-
-        if(ui->targetMode->currentText() == "Velocity")
-            header = COMMAND_MODE_CSV;
-        else if(ui->targetMode->currentText() == "Torque")
-            header = COMMAND_MODE_CST;
-        else if(ui->targetMode->currentText() == "Position")
-            header = COMMAND_MODE_PPM;
-        else if(ui->targetMode->currentText() == "B&F")
-            header = COMMAND_MODE_BACK_AND_FORTH_VELOCITY;
-        else
-            header = 0000;
-
-        int iData = ui->targetValue->text().toInt();
+    {   short header = COMMAND_MODE_SET_ZERO;
 
         pTcpPacket->setCommandHeader(header);
-        pTcpPacket->encode(iData);
         pTcpPacket->sendPacket();
 
-        AppendText("[" + ui->targetMode->currentText()+ "] " + ui->targetValue->text());
+        AppendText("[Set Zero]");
+    }
+}
+
+void MainWindow::on_runButton_clicked()
+{
+    if(!connectFlag)
+        AppendText("Not connected");
+    else
+    {   short header= COMMAND_MODE_CSV;
+
+        int32_t velocity = ui->targetValue->text().toInt();
+
+        pTcpPacket->setCommandHeader(header);
+        pTcpPacket->encode(velocity);
+        pTcpPacket->sendPacket();
+
+        AppendText("[Velocity] " + ui->targetValue->text());
     }
     ui->targetValue->setFocus();
 }
-
-void MainWindow::on_cwButton_pressed()
+void MainWindow::on_runButton_2_clicked()
 {
     if(!connectFlag)
         AppendText("Not connected");
     else
-    {
-        short header = COMMAND_MODE_CSV;
-        int iData = ui->velocity->text().toInt();
+    {   short header = COMMAND_MODE_CST;
+
+        int16_t torque = ui->targetValue_2->text().toInt();
 
         pTcpPacket->setCommandHeader(header);
-        pTcpPacket->encode(iData);
+        pTcpPacket->encode(torque);
         pTcpPacket->sendPacket();
+
+        AppendText("[Torque] " + ui->targetValue_2->text());
     }
+    ui->targetValue_2->setFocus();
 }
-void MainWindow::on_ccwButton_pressed()
+void MainWindow::on_runButton_3_clicked()
 {
     if(!connectFlag)
         AppendText("Not connected");
     else
-    {
-        short header = COMMAND_MODE_CSV;
-        int iData = ui->velocity->text().toInt() * (-1);
+    {   short header = COMMAND_MODE_PPM;
+
+        int32_t position = ui->targetValue_3->text().toInt();
 
         pTcpPacket->setCommandHeader(header);
-        pTcpPacket->encode(iData);
+        pTcpPacket->encode(position);
         pTcpPacket->sendPacket();
-    }
-}
-void MainWindow::on_cwButton_released()
-{
-    on_stopButton_clicked();
-}
-void MainWindow::on_ccwButton_released()
-{
-    on_stopButton_clicked();
-}
 
+        AppendText("[Position] " + ui->targetValue_3->text());
+    }
+    ui->targetValue_3->setFocus();
+}
 void MainWindow::on_generateButton_clicked()
 {
     if(!connectFlag)
@@ -200,6 +173,44 @@ void MainWindow::on_generateButton_clicked()
         AppendText("(Amp, Freq) : (" + ui->amplitude->text() + ", " + ui->frequency->text() + ")");
     }
 }
+
+void MainWindow::on_cwButton_pressed()
+{
+    if(!connectFlag)
+        AppendText("Not connected");
+    else
+    {
+        short header = COMMAND_MODE_CSV;
+        int32_t velocity = ui->velocity->text().toInt();
+
+        pTcpPacket->setCommandHeader(header);
+        pTcpPacket->encode(velocity);
+        pTcpPacket->sendPacket();
+    }
+}
+void MainWindow::on_ccwButton_pressed()
+{
+    if(!connectFlag)
+        AppendText("Not connected");
+    else
+    {
+        short header = COMMAND_MODE_CSV;
+        int32_t velocity = ui->velocity->text().toInt() * (-1);
+
+        pTcpPacket->setCommandHeader(header);
+        pTcpPacket->encode(velocity);
+        pTcpPacket->sendPacket();
+    }
+}
+void MainWindow::on_cwButton_released()
+{
+    on_stopButton_clicked();
+}
+void MainWindow::on_ccwButton_released()
+{
+    on_stopButton_clicked();
+}
+
 
 
 void MainWindow::readPacket()
@@ -238,6 +249,7 @@ void MainWindow::readPacket()
             {
                 ui->actualVelocity->setText(QString::number(logData.velocity_actual_value));
                 ui->actualTorque->setText(QString::number(logData.torque_actual_value));
+                ui->actualPosition->setText(QString::number(logData.position_actual_value));
                 rxCount = 0;
             }
 

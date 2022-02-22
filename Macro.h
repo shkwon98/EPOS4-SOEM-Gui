@@ -24,8 +24,9 @@ typedef struct
 typedef struct {
     unsigned int timeStamp;
 
-    int velocity_actual_value;
+    int32_t velocity_actual_value;
     int16_t torque_actual_value;
+    int32_t position_actual_value;
 
 }LOG_DATA;
 
@@ -36,11 +37,13 @@ typedef struct {
 ///////////////// GUI PC ----> RPI /////////////////
 ////////////////////////////////////////////////////
 
+#define COMMAND_MODE_STOP_MOTOR                 0x0000
 #define COMMAND_MODE_CSV                        0x0001 // Cyclic Synchronous Velocity Mode
 #define COMMAND_MODE_CST                        0x0002 // Cyclic Synchronous Torque Mode
 #define COMMAND_MODE_PPM                        0x0003 // Profile Position Mode
 #define COMMAND_MODE_SINUSOIDAL_VELOCITY        0x0004
 #define COMMAND_MODE_BACK_AND_FORTH_VELOCITY    0x0005
+#define COMMAND_MODE_SET_ZERO                   0x0006
 
 
 ////////////////////////////////////////////////////
