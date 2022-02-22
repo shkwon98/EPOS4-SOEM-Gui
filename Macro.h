@@ -32,6 +32,8 @@ typedef struct {
 
 #define LOG_DATA_SIZE sizeof(LOG_DATA)
 
+// EPOS4 Gear Ratio
+#define GEAR_RATIO  17
 
 ////////////////////////////////////////////////////
 ///////////////// GUI PC ----> RPI /////////////////

@@ -108,7 +108,7 @@
       </widget>
      </item>
      <item row="0" column="0" colspan="2">
-      <widget class="QLabel" name="label_7">
+      <widget class="QLabel" name="label_11">
        <property name="font">
         <font>
          <family>Arial</family>
@@ -157,7 +157,7 @@
      </property>
      <layout class="QGridLayout" name="gridLayout_2">
       <item row="0" column="0">
-       <widget class="QLabel" name="label_14">
+       <widget class="QLabel" name="label_2">
         <property name="font">
          <font>
           <family>Arial</family>
@@ -166,7 +166,7 @@
          </font>
         </property>
         <property name="text">
-         <string>Velocity</string>
+         <string>Velocity [rpm]</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
@@ -179,10 +179,10 @@
          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
         </property>
         <property name="minimum">
-         <number>-20000</number>
+         <number>-1176</number>
         </property>
         <property name="maximum">
-         <number>20000</number>
+         <number>1176</number>
         </property>
         <property name="value">
          <number>0</number>
@@ -239,7 +239,7 @@
      </property>
      <layout class="QGridLayout" name="gridLayout_3">
       <item row="0" column="0">
-       <widget class="QLabel" name="label_15">
+       <widget class="QLabel" name="label_3">
         <property name="font">
          <font>
           <family>Arial</family>
@@ -321,7 +321,7 @@
      </property>
      <layout class="QGridLayout" name="gridLayout_4">
       <item row="0" column="0">
-       <widget class="QLabel" name="label_16">
+       <widget class="QLabel" name="label_4">
         <property name="font">
          <font>
           <family>Arial</family>
@@ -416,7 +416,7 @@
        </widget>
       </item>
       <item row="0" column="0">
-       <widget class="QLabel" name="label_3">
+       <widget class="QLabel" name="label_5">
         <property name="font">
          <font>
           <weight>50</weight>
@@ -442,7 +442,7 @@
        </widget>
       </item>
       <item row="1" column="0">
-       <widget class="QLabel" name="label_4">
+       <widget class="QLabel" name="label_6">
         <property name="font">
          <font>
           <weight>50</weight>
@@ -500,7 +500,7 @@
      </property>
      <layout class="QGridLayout" name="gridLayout_8">
       <item row="0" column="0">
-       <widget class="QLabel" name="label_19">
+       <widget class="QLabel" name="label_7">
         <property name="font">
          <font>
           <family>Arial</family>
@@ -509,7 +509,7 @@
          </font>
         </property>
         <property name="text">
-         <string>Velocity</string>
+         <string>Velocity [rpm]</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
@@ -591,7 +591,7 @@
      </property>
      <layout class="QGridLayout" name="gridLayout_9">
       <item row="0" column="1">
-       <widget class="QLabel" name="label_6">
+       <widget class="QLabel" name="label_9">
         <property name="font">
          <font>
           <family>Arial</family>
@@ -624,7 +624,7 @@
        </widget>
       </item>
       <item row="0" column="0">
-       <widget class="QLabel" name="label_5">
+       <widget class="QLabel" name="label_8">
         <property name="font">
          <font>
           <family>Arial</family>
@@ -633,7 +633,7 @@
          </font>
         </property>
         <property name="text">
-         <string>Velocity</string>
+         <string>Velocity [rpm]</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
@@ -657,7 +657,7 @@
        </widget>
       </item>
       <item row="0" column="2">
-       <widget class="QLabel" name="label_2">
+       <widget class="QLabel" name="label_10">
         <property name="font">
          <font>
           <weight>50</weight>

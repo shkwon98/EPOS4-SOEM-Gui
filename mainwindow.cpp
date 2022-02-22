@@ -109,7 +109,7 @@ void MainWindow::on_runButton_clicked()
     else
     {   short header= COMMAND_MODE_CSV;
 
-        int32_t velocity = ui->targetValue->text().toInt();
+        int32_t velocity = GEAR_RATIO * ui->targetValue->text().toInt();
 
         pTcpPacket->setCommandHeader(header);
         pTcpPacket->encode(velocity);
@@ -181,7 +181,7 @@ void MainWindow::on_cwButton_pressed()
     else
     {
         short header = COMMAND_MODE_CSV;
-        int32_t velocity = ui->velocity->text().toInt();
+        int32_t velocity = GEAR_RATIO * ui->velocity->text().toInt();
 
         pTcpPacket->setCommandHeader(header);
         pTcpPacket->encode(velocity);
@@ -195,7 +195,7 @@ void MainWindow::on_ccwButton_pressed()
     else
     {
         short header = COMMAND_MODE_CSV;
-        int32_t velocity = ui->velocity->text().toInt() * (-1);
+        int32_t velocity = GEAR_RATIO * ui->velocity->text().toInt() * (-1);
 
         pTcpPacket->setCommandHeader(header);
         pTcpPacket->encode(velocity);
@@ -247,7 +247,7 @@ void MainWindow::readPacket()
 
             if(rxCount == (1000/30))    // 1kHz --> 30Hz
             {
-                ui->actualVelocity->setText(QString::number(logData.velocity_actual_value));
+                ui->actualVelocity->setText(QString::number(logData.velocity_actual_value / GEAR_RATIO));
                 ui->actualTorque->setText(QString::number(logData.torque_actual_value));
                 ui->actualPosition->setText(QString::number(logData.position_actual_value));
                 rxCount = 0;
