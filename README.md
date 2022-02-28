@@ -3,7 +3,7 @@ This is a GUI Application to control SOEM (Simple Open EtherCAT Master) EPOS4 Mo
 
 ---
 
-## PREREQUISITIES
+## PREREQUISITES
 + This GUI application was developed with QT Creator installed PC
 + [EPOS4_SOEM](https://github.com/shkwon98/EPOS4_SOEM) installed Raspberry Pi is required
 + Since this program is developed based on TCP&UDP protocol, you must check the IP addresses of your devices and revise the corresponding parts of program code
