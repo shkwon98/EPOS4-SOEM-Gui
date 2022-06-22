@@ -9,6 +9,26 @@ MainWindow::MainWindow(QWidget *parent)
 //    this->setFixedSize(530, 600);
 
     pTcpPacket = new TCP_Packet();
+
+
+
+    QStringList RunTaskTypeCategory;
+
+    RunTaskTypeCategory.append("None");
+    RunTaskTypeCategory.append("Motor Control");
+
+    ui->comboBox_RunTask_Type->addItems(RunTaskTypeCategory);
+
+
+    QStringList RunTaskMotionCategory;
+
+    RunTaskMotionCategory.append("X");
+    RunTaskMotionCategory.append("Y");
+    RunTaskMotionCategory.append("Z");
+    RunTaskMotionCategory.append("Circle");
+    RunTaskMotionCategory.append("Custom");
+
+    ui->comboBox_RunTask_Motion->addItems(RunTaskMotionCategory);
 }
 MainWindow::~MainWindow()
 {
@@ -204,11 +224,19 @@ void MainWindow::on_ccwButton_pressed()
 }
 void MainWindow::on_cwButton_released()
 {
-    on_stopButton_clicked();
+    if(!connectFlag)
+        AppendText("Not connected");
+    else
+    {
+        short header = COMMAND_MODE_STOP_MOTOR;
+
+        pTcpPacket->setCommandHeader(header);
+        pTcpPacket->sendPacket();
+    }
 }
 void MainWindow::on_ccwButton_released()
 {
-    on_stopButton_clicked();
+    on_cwButton_released();
 }
 
 
@@ -345,4 +373,79 @@ void MainWindow::on_pushButton_Data_Logging_clicked()
 
 
     }
+}
+
+void MainWindow::on_runButton_CSP_clicked()
+{
+
+    if(!connectFlag)
+        AppendText("Not connected");
+    else
+    {   short header = COMMAND_MODE_CSP;
+
+        int32_t position = ui->targetValue_CSP->text().toInt();
+
+        pTcpPacket->setCommandHeader(header);
+        pTcpPacket->encode(position);
+        pTcpPacket->sendPacket();
+
+        AppendText("[Position] " + ui->targetValue_CSP->text());
+    }
+    ui->targetValue_CSP->setFocus();
+
+}
+
+void MainWindow::on_pushButton_RunTask_SetTaskParam_clicked()
+{
+    // Task Parameter
+    int iRunTaskType = ui->comboBox_RunTask_Type->currentIndex();
+    int iRunTaskMotion = ui->comboBox_RunTask_Motion->currentIndex();
+
+    QString sRunTaskDisp = ui->textEdit_RunTask_Displacement->toPlainText();
+    QString sRunTaskPeriod = ui->textEdit_RunTask_Period->toPlainText();
+    QString sRunTaskRepeat = ui->textEdit_RunTask_Repeat->toPlainText();
+
+    float fRunTaskDisp = sRunTaskDisp.toFloat();
+    float fRunTaskPeriod = sRunTaskPeriod.toFloat();
+    int iRunTaskRepeat = sRunTaskRepeat.toInt();
+
+    taskParam.disp = fRunTaskDisp;
+    taskParam.period = fRunTaskPeriod;
+    taskParam.repeat = iRunTaskRepeat;
+
+    taskParam.taskType = iRunTaskType;
+    taskParam.taskMotion = iRunTaskMotion;
+
+//    taskParam.footSwitch = ui->checkBox_RunTask_Apply_Foot_Pedal->isChecked();
+    taskParam.dataApply = ui->checkBox_RunTask_Apply_Data->isChecked();
+
+
+    uint16_t header = COMMAND_CODE_SET_TASK_PARAM;
+
+    pTcpPacket->setCommandHeader(header);
+    pTcpPacket->encode(taskParam);
+    pTcpPacket->sendPacket();
+
+}
+
+void MainWindow::on_pushButton_RunTask_RUN_clicked()
+{
+    uint16_t header = COMMAND_CODE_RUN_TASK;
+
+    bool bStart = true;
+
+    pTcpPacket->setCommandHeader(header);
+    pTcpPacket->encode(bStart);
+    pTcpPacket->sendPacket();
+}
+
+void MainWindow::on_pushButton_RunTask_STOP_clicked()
+{
+    uint16_t header = COMMAND_CODE_RUN_TASK;
+
+    bool bStart = false;
+
+    pTcpPacket->setCommandHeader(header);
+    pTcpPacket->encode(bStart);
+    pTcpPacket->sendPacket();
 }

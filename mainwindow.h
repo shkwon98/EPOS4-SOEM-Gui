@@ -56,6 +56,14 @@ private slots:
     void on_pushButton_Data_Logging_clicked();
 
 
+    void on_runButton_CSP_clicked();
+
+    void on_pushButton_RunTask_SetTaskParam_clicked();
+
+    void on_pushButton_RunTask_RUN_clicked();
+
+    void on_pushButton_RunTask_STOP_clicked();
+
 private:
     Ui::MainWindow *ui;
 
@@ -74,5 +82,8 @@ private:
     bool bRegLogging = false;
     CDataLogger mDataLogger;
     bool bLogCheck;
+
+    TASK_PARAM taskParam;
+
 };
 #endif // MAINWINDOW_H

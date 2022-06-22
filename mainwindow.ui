@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>942</width>
-    <height>509</height>
+    <width>989</width>
+    <height>1024</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -93,8 +93,8 @@
    <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
-      <x>550</x>
-      <y>287</y>
+      <x>580</x>
+      <y>440</y>
       <width>371</width>
       <height>161</height>
      </rect>
@@ -406,6 +406,7 @@
        <widget class="QPushButton" name="generateButton">
         <property name="font">
          <font>
+          <family>Arial</family>
           <weight>50</weight>
           <bold>false</bold>
          </font>
@@ -419,6 +420,7 @@
        <widget class="QLabel" name="label_5">
         <property name="font">
          <font>
+          <family>Arial</family>
           <weight>50</weight>
           <bold>false</bold>
          </font>
@@ -445,6 +447,7 @@
        <widget class="QLabel" name="label_6">
         <property name="font">
          <font>
+          <family>Arial</family>
           <weight>50</weight>
           <bold>false</bold>
          </font>
@@ -494,7 +497,7 @@
       <rect>
        <x>11</x>
        <y>31</y>
-       <width>221</width>
+       <width>232</width>
        <height>71</height>
       </rect>
      </property>
@@ -522,10 +525,10 @@
          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
         </property>
         <property name="minimum">
-         <number>-20000</number>
+         <number>-1176</number>
         </property>
         <property name="maximum">
-         <number>20000</number>
+         <number>1176</number>
         </property>
        </widget>
       </item>
@@ -533,6 +536,7 @@
        <widget class="QPushButton" name="ccwButton">
         <property name="font">
          <font>
+          <family>Arial</family>
           <weight>50</weight>
           <bold>false</bold>
          </font>
@@ -546,6 +550,7 @@
        <widget class="QPushButton" name="cwButton">
         <property name="font">
          <font>
+          <family>Arial</family>
           <weight>50</weight>
           <bold>false</bold>
          </font>
@@ -580,7 +585,7 @@
     <property name="flat">
      <bool>false</bool>
     </property>
-    <widget class="QWidget" name="">
+    <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -660,6 +665,7 @@
        <widget class="QLabel" name="label_10">
         <property name="font">
          <font>
+          <family>Arial</family>
           <weight>50</weight>
           <bold>false</bold>
          </font>
@@ -692,6 +698,7 @@
        <widget class="QPushButton" name="udpButton">
         <property name="font">
          <font>
+          <family>Arial</family>
           <weight>50</weight>
           <bold>false</bold>
          </font>
@@ -731,13 +738,13 @@
      <string>Set Zero</string>
     </property>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>580</x>
       <y>160</y>
       <width>321</width>
-      <height>111</height>
+      <height>262</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout">
@@ -801,13 +808,257 @@
      </item>
     </layout>
    </widget>
+   <widget class="QGroupBox" name="groupBox_7">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>480</y>
+      <width>471</width>
+      <height>391</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="title">
+     <string>CSP Mode</string>
+    </property>
+    <property name="flat">
+     <bool>false</bool>
+    </property>
+    <widget class="QWidget" name="layoutWidget_6">
+     <property name="geometry">
+      <rect>
+       <x>11</x>
+       <y>31</y>
+       <width>221</width>
+       <height>68</height>
+      </rect>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_7">
+      <item row="0" column="0">
+       <widget class="QLabel" name="label_15">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Goal Position</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QSpinBox" name="targetValue_CSP">
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+        <property name="minimum">
+         <number>-99999</number>
+        </property>
+        <property name="maximum">
+         <number>99999</number>
+        </property>
+        <property name="value">
+         <number>0</number>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0" colspan="2">
+       <widget class="QPushButton" name="runButton_CSP">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Run</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QComboBox" name="comboBox_RunTask_Motion">
+     <property name="geometry">
+      <rect>
+       <x>250</x>
+       <y>150</y>
+       <width>211</width>
+       <height>31</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QTextEdit" name="textEdit_RunTask_Repeat">
+     <property name="geometry">
+      <rect>
+       <x>190</x>
+       <y>290</y>
+       <width>91</width>
+       <height>31</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QTextEdit" name="textEdit_RunTask_Displacement">
+     <property name="geometry">
+      <rect>
+       <x>190</x>
+       <y>210</y>
+       <width>91</width>
+       <height>31</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_21">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>290</y>
+       <width>171</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="layoutDirection">
+      <enum>Qt::LeftToRight</enum>
+     </property>
+     <property name="text">
+      <string>Repeat(-1,1,2...)</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_20">
+     <property name="geometry">
+      <rect>
+       <x>90</x>
+       <y>250</y>
+       <width>91</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="layoutDirection">
+      <enum>Qt::LeftToRight</enum>
+     </property>
+     <property name="text">
+      <string>Period(s)</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_19">
+     <property name="geometry">
+      <rect>
+       <x>50</x>
+       <y>210</y>
+       <width>131</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="layoutDirection">
+      <enum>Qt::LeftToRight</enum>
+     </property>
+     <property name="text">
+      <string>Disp(mm)</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="comboBox_RunTask_Type">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>110</y>
+       <width>441</width>
+       <height>31</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_RunTask_SetTaskParam">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>150</y>
+       <width>211</width>
+       <height>34</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Set Task Param</string>
+     </property>
+    </widget>
+    <widget class="QTextEdit" name="textEdit_RunTask_Period">
+     <property name="geometry">
+      <rect>
+       <x>190</x>
+       <y>250</y>
+       <width>91</width>
+       <height>31</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_RunTask_STOP">
+     <property name="geometry">
+      <rect>
+       <x>240</x>
+       <y>340</y>
+       <width>181</width>
+       <height>34</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Stop</string>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="checkBox_RunTask_Apply_Data">
+     <property name="geometry">
+      <rect>
+       <x>310</x>
+       <y>300</y>
+       <width>171</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Apply Data</string>
+     </property>
+     <property name="checked">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_RunTask_RUN">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>340</y>
+       <width>181</width>
+       <height>34</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Run</string>
+     </property>
+    </widget>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>942</width>
+     <width>989</width>
      <height>30</height>
     </rect>
    </property>
@@ -834,10 +1085,6 @@
   <tabstop>textEdit_LogFileName</tabstop>
   <tabstop>textEdit_LogTimer</tabstop>
   <tabstop>pushButton_Data_Logging</tabstop>
-  <tabstop>targetValue_4</tabstop>
-  <tabstop>runButton_4</tabstop>
-  <tabstop>targetValue_5</tabstop>
-  <tabstop>runButton_5</tabstop>
  </tabstops>
  <resources/>
  <connections/>
