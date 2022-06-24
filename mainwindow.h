@@ -39,30 +39,19 @@ private slots:
     void on_udpButton_clicked(bool checked);
     void on_tcpConnectButton_clicked();
 
-    void on_stopButton_clicked();
-    void on_setZeroButton_clicked();
+    void on_pushButton_SetTaskParam_clicked();
+    void on_pushButton_CSP_Run_clicked();
+    void on_pushButton_CSP_Stop_clicked();
 
-    void on_runButton_clicked();
-    void on_runButton_2_clicked();
-    void on_runButton_3_clicked();
-    void on_generateButton_clicked();
+    void on_pushButton_CSV_Run_clicked();
+    void on_pushButton_CSV_Stop_clicked();
 
-    void on_cwButton_pressed();
-    void on_ccwButton_pressed();
-    void on_cwButton_released();
-    void on_ccwButton_released();
+    void on_pushButton_CST_Run_clicked();
+    void on_pushButton_CST_Stop_clicked();
 
     void readPacket();
     void on_pushButton_Data_Logging_clicked();
 
-
-    void on_runButton_CSP_clicked();
-
-    void on_pushButton_RunTask_SetTaskParam_clicked();
-
-    void on_pushButton_RunTask_RUN_clicked();
-
-    void on_pushButton_RunTask_STOP_clicked();
 
 private:
     Ui::MainWindow *ui;

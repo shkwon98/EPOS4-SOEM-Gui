@@ -73,6 +73,9 @@ void MainWindow::on_udpButton_clicked(bool checked)
         UdpSocket->bind(GUI_PC_Address, UDP_PORT);
 
         connect(UdpSocket,SIGNAL(readyRead()),this,SLOT(readPacket()));
+
+        qDebug() << "on_udpButton_clicked";
+
     }
     else
     {
@@ -94,44 +97,85 @@ void MainWindow::on_tcpConnectButton_clicked()
 }
 
 
-void MainWindow::on_stopButton_clicked()
+// Position Control
+void MainWindow::on_pushButton_SetTaskParam_clicked()
+{
+    // Task Parameter
+    int iRunTaskType = ui->comboBox_RunTask_Type->currentIndex();
+    int iRunTaskMotion = ui->comboBox_RunTask_Motion->currentIndex();
+
+    QString sRunTaskDisp = ui->textEdit_RunTask_Displacement->toPlainText();
+    QString sRunTaskPeriod = ui->textEdit_RunTask_Period->toPlainText();
+    QString sRunTaskRepeat = ui->textEdit_RunTask_Repeat->toPlainText();
+
+    float fRunTaskDisp = sRunTaskDisp.toFloat();
+    float fRunTaskPeriod = sRunTaskPeriod.toFloat();
+    int iRunTaskRepeat = sRunTaskRepeat.toInt();
+
+    taskParam.taskType = iRunTaskType;
+    taskParam.taskMotion = iRunTaskMotion;
+
+    taskParam.disp = fRunTaskDisp;
+    taskParam.period = fRunTaskPeriod;
+    taskParam.repeat = iRunTaskRepeat;
+
+//    taskParam.footSwitch = ui->checkBox_RunTask_Apply_Foot_Pedal->isChecked();
+    taskParam.dataApply = ui->checkBox_RunTask_Apply_Data->isChecked();
+
+
+    uint16_t header = COMMAND_SET_TASK_PARAM;
+
+    pTcpPacket->setCommandHeader(header);
+    pTcpPacket->encode(taskParam);
+    pTcpPacket->sendPacket();
+}
+void MainWindow::on_pushButton_CSP_Run_clicked()
 {
     if(!connectFlag)
         AppendText("Not connected");
     else
     {
-        short header = COMMAND_MODE_STOP_MOTOR;
+        short header = COMMAND_RUN_CSP;
+        bool bRunStart = true;
 
         pTcpPacket->setCommandHeader(header);
+        pTcpPacket->encode(bRunStart);
+        pTcpPacket->sendPacket();
+    }
+}
+void MainWindow::on_pushButton_CSP_Stop_clicked()
+{
+    if(!connectFlag)
+        AppendText("Not connected");
+    else
+    {
+        short header = COMMAND_RUN_CSP;
+
+        bool bRunStart = false;
+
+        pTcpPacket->setCommandHeader(header);
+        pTcpPacket->encode(bRunStart);
         pTcpPacket->sendPacket();
 
         AppendText("[Stop Motor]");
     }
 }
-void MainWindow::on_setZeroButton_clicked()
+
+
+// Velocity Control
+void MainWindow::on_pushButton_CSV_Run_clicked()
 {
     if(!connectFlag)
         AppendText("Not connected");
     else
-    {   short header = COMMAND_MODE_SET_ZERO;
-
-        pTcpPacket->setCommandHeader(header);
-        pTcpPacket->sendPacket();
-
-        AppendText("[Set Zero]");
-    }
-}
-
-void MainWindow::on_runButton_clicked()
-{
-    if(!connectFlag)
-        AppendText("Not connected");
-    else
-    {   short header= COMMAND_MODE_CSV;
+    {
+        short header= COMMAND_RUN_CSV;
+        bool bRunStart = true;
 
         int32_t velocity = GEAR_RATIO * ui->targetValue->text().toInt();
 
         pTcpPacket->setCommandHeader(header);
+        pTcpPacket->encode(bRunStart);
         pTcpPacket->encode(velocity);
         pTcpPacket->sendPacket();
 
@@ -139,16 +183,26 @@ void MainWindow::on_runButton_clicked()
     }
     ui->targetValue->setFocus();
 }
-void MainWindow::on_runButton_2_clicked()
+void MainWindow::on_pushButton_CSV_Stop_clicked()
+{
+    on_pushButton_CSP_Stop_clicked();
+}
+
+
+// Torque Control
+void MainWindow::on_pushButton_CST_Run_clicked()
 {
     if(!connectFlag)
         AppendText("Not connected");
     else
-    {   short header = COMMAND_MODE_CST;
+    {
+        short header = COMMAND_RUN_CST;
+        bool bRunStart = true;
 
         int16_t torque = ui->targetValue_2->text().toInt();
 
         pTcpPacket->setCommandHeader(header);
+        pTcpPacket->encode(bRunStart);
         pTcpPacket->encode(torque);
         pTcpPacket->sendPacket();
 
@@ -156,89 +210,10 @@ void MainWindow::on_runButton_2_clicked()
     }
     ui->targetValue_2->setFocus();
 }
-void MainWindow::on_runButton_3_clicked()
+void MainWindow::on_pushButton_CST_Stop_clicked()
 {
-    if(!connectFlag)
-        AppendText("Not connected");
-    else
-    {   short header = COMMAND_MODE_PPM;
-
-        int32_t position = ui->targetValue_3->text().toInt();
-
-        pTcpPacket->setCommandHeader(header);
-        pTcpPacket->encode(position);
-        pTcpPacket->sendPacket();
-
-        AppendText("[Position] " + ui->targetValue_3->text());
-    }
-    ui->targetValue_3->setFocus();
+    on_pushButton_CSP_Stop_clicked();
 }
-void MainWindow::on_generateButton_clicked()
-{
-    if(!connectFlag)
-        AppendText("Not connected");
-    else
-    {
-        short header = COMMAND_MODE_SINUSOIDAL_VELOCITY;
-
-        SINUSOIDAL sineData;
-        sineData.amplitude = ui->amplitude->text().toInt();
-        sineData.frequency = ui->frequency->text().toInt();
-
-        pTcpPacket->setCommandHeader(header);
-        pTcpPacket->encode(sineData.amplitude);
-        pTcpPacket->encode(sineData.frequency);
-        pTcpPacket->sendPacket();
-
-        AppendText("(Amp, Freq) : (" + ui->amplitude->text() + ", " + ui->frequency->text() + ")");
-    }
-}
-
-void MainWindow::on_cwButton_pressed()
-{
-    if(!connectFlag)
-        AppendText("Not connected");
-    else
-    {
-        short header = COMMAND_MODE_CSV;
-        int32_t velocity = GEAR_RATIO * ui->velocity->text().toInt();
-
-        pTcpPacket->setCommandHeader(header);
-        pTcpPacket->encode(velocity);
-        pTcpPacket->sendPacket();
-    }
-}
-void MainWindow::on_ccwButton_pressed()
-{
-    if(!connectFlag)
-        AppendText("Not connected");
-    else
-    {
-        short header = COMMAND_MODE_CSV;
-        int32_t velocity = GEAR_RATIO * ui->velocity->text().toInt() * (-1);
-
-        pTcpPacket->setCommandHeader(header);
-        pTcpPacket->encode(velocity);
-        pTcpPacket->sendPacket();
-    }
-}
-void MainWindow::on_cwButton_released()
-{
-    if(!connectFlag)
-        AppendText("Not connected");
-    else
-    {
-        short header = COMMAND_MODE_STOP_MOTOR;
-
-        pTcpPacket->setCommandHeader(header);
-        pTcpPacket->sendPacket();
-    }
-}
-void MainWindow::on_ccwButton_released()
-{
-    on_cwButton_released();
-}
-
 
 
 void MainWindow::readPacket()
@@ -249,6 +224,8 @@ void MainWindow::readPacket()
 
     while(UdpSocket->hasPendingDatagrams())
     {
+        qDebug() << "readPacket";
+
         rxData.fill(0, UdpSocket->pendingDatagramSize());
         UdpSocket->readDatagram(rxData.data(), rxData.size(), &sender, &senderPort);
 
@@ -275,9 +252,9 @@ void MainWindow::readPacket()
 
             if(rxCount == (1000/30))    // 1kHz --> 30Hz
             {
-                ui->actualVelocity->setText(QString::number(logData.velocity_actual_value / GEAR_RATIO));
-                ui->actualTorque->setText(QString::number(logData.torque_actual_value));
-                ui->actualPosition->setText(QString::number(logData.position_actual_value));
+                ui->actualVelocity->setText(QString::number(logData.actualVelocity / GEAR_RATIO));
+                ui->actualTorque->setText(QString::number(logData.actualTorque));
+                ui->actualPosition->setText(QString::number(logData.actualPosition));
                 rxCount = 0;
             }
 
@@ -316,11 +293,8 @@ void MainWindow::readPacket()
 //            {
 //                timeLogFlag = true;
 //            }
-
-
             break;
         }
-
         rxCount++;
     }
 }
@@ -353,7 +327,6 @@ void MainWindow::on_pushButton_Data_Logging_clicked()
 
         //        mDataLogger.start();
         mDataLogger.bRun = true;
-
     }
     else
     {
@@ -370,82 +343,5 @@ void MainWindow::on_pushButton_Data_Logging_clicked()
         mDataLogger.LogStop();
 
         //        mDataLogger.quit();
-
-
     }
-}
-
-void MainWindow::on_runButton_CSP_clicked()
-{
-
-    if(!connectFlag)
-        AppendText("Not connected");
-    else
-    {   short header = COMMAND_MODE_CSP;
-
-        int32_t position = ui->targetValue_CSP->text().toInt();
-
-        pTcpPacket->setCommandHeader(header);
-        pTcpPacket->encode(position);
-        pTcpPacket->sendPacket();
-
-        AppendText("[Position] " + ui->targetValue_CSP->text());
-    }
-    ui->targetValue_CSP->setFocus();
-
-}
-
-void MainWindow::on_pushButton_RunTask_SetTaskParam_clicked()
-{
-    // Task Parameter
-    int iRunTaskType = ui->comboBox_RunTask_Type->currentIndex();
-    int iRunTaskMotion = ui->comboBox_RunTask_Motion->currentIndex();
-
-    QString sRunTaskDisp = ui->textEdit_RunTask_Displacement->toPlainText();
-    QString sRunTaskPeriod = ui->textEdit_RunTask_Period->toPlainText();
-    QString sRunTaskRepeat = ui->textEdit_RunTask_Repeat->toPlainText();
-
-    float fRunTaskDisp = sRunTaskDisp.toFloat();
-    float fRunTaskPeriod = sRunTaskPeriod.toFloat();
-    int iRunTaskRepeat = sRunTaskRepeat.toInt();
-
-    taskParam.disp = fRunTaskDisp;
-    taskParam.period = fRunTaskPeriod;
-    taskParam.repeat = iRunTaskRepeat;
-
-    taskParam.taskType = iRunTaskType;
-    taskParam.taskMotion = iRunTaskMotion;
-
-//    taskParam.footSwitch = ui->checkBox_RunTask_Apply_Foot_Pedal->isChecked();
-    taskParam.dataApply = ui->checkBox_RunTask_Apply_Data->isChecked();
-
-
-    uint16_t header = COMMAND_CODE_SET_TASK_PARAM;
-
-    pTcpPacket->setCommandHeader(header);
-    pTcpPacket->encode(taskParam);
-    pTcpPacket->sendPacket();
-
-}
-
-void MainWindow::on_pushButton_RunTask_RUN_clicked()
-{
-    uint16_t header = COMMAND_CODE_RUN_TASK;
-
-    bool bStart = true;
-
-    pTcpPacket->setCommandHeader(header);
-    pTcpPacket->encode(bStart);
-    pTcpPacket->sendPacket();
-}
-
-void MainWindow::on_pushButton_RunTask_STOP_clicked()
-{
-    uint16_t header = COMMAND_CODE_RUN_TASK;
-
-    bool bStart = false;
-
-    pTcpPacket->setCommandHeader(header);
-    pTcpPacket->encode(bStart);
-    pTcpPacket->sendPacket();
 }

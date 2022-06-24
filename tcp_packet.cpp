@@ -55,9 +55,12 @@ bool TCP_Packet::connect()
 void TCP_Packet::setCommandHeader(uint16_t header)
 {
     // Initialize Variable
+    bInitData = true;
     encodeIndex = 0;
+    dataSize = 0;
 
-    for(int i=0; i<TX_BUFFER_SIZE; i++)
+
+    for (int i = 0; i < TX_BUFFER_SIZE; i++)
     {
         txBuffer[i] = 0;
     }
@@ -71,8 +74,10 @@ void TCP_Packet::setCommandHeader(uint16_t header)
     encodeIndex++;
 
     // Command Header
-    memcpy(&txBuffer[encodeIndex], &header, sizeof(header));
-    encodeIndex = encodeIndex + sizeof(header);
+    this->header = header;
+    memcpy(&txBuffer[4], &header, sizeof(header));
+    encodeIndex += sizeof(header);
+
 }
 
 
@@ -82,12 +87,18 @@ void TCP_Packet::sendPacket()
     ///////////////////////////////////////////////////////
     // Packet Header 1,
     // Packet Header 2,
+    // Size,
     // Command Header,
     // Data
     ///////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////
 
     tcpClient->flush();
+
+    // Data Size = Command Header(2 byte) + Data
+    dataSize += 2;
+    memcpy(&txBuffer[2], &dataSize, sizeof(dataSize));
+    encodeIndex += sizeof(dataSize);
 
     if(tcpClient->isWritable())
         tcpClient->write((char*)txBuffer, encodeIndex);
