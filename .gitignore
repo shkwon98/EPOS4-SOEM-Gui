@@ -1,3 +1,3 @@
 files/
 build-*/
-*.user
+*.pro.user
