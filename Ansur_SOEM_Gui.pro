@@ -5,6 +5,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++11
 
+RC_FILE=icon.rc
 
 
 # The following define makes your compiler emit warnings if you use
@@ -19,21 +20,22 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    ansur_socket/CTcpPacket.cpp \
+    ansur_socket/CUdpPacket.cpp \
     main.cpp \
-    mainwindow.cpp \
-    ansur_socket/tcp_packet.cpp \
-    ansur_socket/udp_packet.cpp
+    ansur_mainwindow/mainwindow.cpp
 
 HEADERS += \
-    mainwindow.h \
-    ansur_socket/tcp_packet.h \
-    ansur_socket/udp_packet.h \
-    ansur_socket/socketDef.h
+    ansur_mainwindow/mainwindow.h \
+    ansur_socket/CTcpPacket.hpp \
+    ansur_socket/CUdpPacket.hpp \
+    ansur_socket/socketDef.hpp
 
 FORMS += \
     mainwindow.ui
 
 INCLUDEPATH += \
+    ansur_mainwindow\
     ansur_socket
 
 # Default rules for deployment.

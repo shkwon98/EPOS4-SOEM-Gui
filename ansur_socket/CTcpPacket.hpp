@@ -1,16 +1,16 @@
-#ifndef TCP_PACKET_H
-#define TCP_PACKET_H
+#ifndef CTCPPACKET_HPP_
+#define CTCPPACKET_HPP_
 
 #include <QtNetwork>
 #include <qdebug.h>
-#include "socketDef.h"
+#include "socketDef.hpp"
 
 
-class TCP_Packet
+class CTcpPacket
 {
 public:
-    TCP_Packet();
-    ~TCP_Packet();
+    CTcpPacket();
+    ~CTcpPacket();
 
     bool connect();
 
@@ -50,4 +50,4 @@ private:
     bool bInitData;
 };
 
-#endif // TCP_PACKET_H
+#endif // CTCPPACKET_HPP_

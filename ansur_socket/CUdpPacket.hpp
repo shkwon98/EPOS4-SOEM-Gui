@@ -1,18 +1,18 @@
-#ifndef UDP_PACKET_H
-#define UDP_PACKET_H
+#ifndef CUDPPACKET_HPP_
+#define CUDPPACKET_HPP_
 
 #include <QObject>
 #include <QtNetwork>
 #include <qdebug.h>
-#include "socketDef.h"
+#include "socketDef.hpp"
 
-class UDP_Packet: public QObject
+class CUdpPacket: public QObject
 {
     Q_OBJECT
 
 public:
-    UDP_Packet(QObject *parent = nullptr);
-    ~UDP_Packet();
+    CUdpPacket(QObject *parent = nullptr);
+    ~CUdpPacket();
 
     short getHeader()
     {
@@ -36,4 +36,4 @@ private:
     unsigned char packetBuffer[PACKET_BUFFER_SIZE];
 };
 
-#endif // UDP_PACKET_H
+#endif // CUDPPACKET_HPP_

@@ -1,7 +1,7 @@
-#include "tcp_packet.h"
+#include "CTcpPacket.hpp"
 
 
-TCP_Packet::TCP_Packet()
+CTcpPacket::CTcpPacket()
 {
     tcpClient = new QTcpSocket();
 
@@ -14,7 +14,7 @@ TCP_Packet::TCP_Packet()
     }
     tcpClient->reset();
 }
-TCP_Packet::~TCP_Packet()
+CTcpPacket::~CTcpPacket()
 {
     if(tcpClient->isOpen())
     {
@@ -25,7 +25,7 @@ TCP_Packet::~TCP_Packet()
 }
 
 
-bool TCP_Packet::connect()
+bool CTcpPacket::connect()
 {
     if(tcpClient->isOpen())
     {
@@ -52,7 +52,7 @@ bool TCP_Packet::connect()
 }
 
 
-void TCP_Packet::setCommandHeader(uint16_t header)
+void CTcpPacket::setCommandHeader(uint16_t header)
 {
     // Initialize Variable
     bInitData = true;
@@ -81,7 +81,7 @@ void TCP_Packet::setCommandHeader(uint16_t header)
 }
 
 
-void TCP_Packet::sendPacket()
+void CTcpPacket::sendPacket()
 {
     ///////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////

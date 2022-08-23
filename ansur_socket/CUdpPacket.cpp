@@ -1,6 +1,6 @@
-#include "udp_packet.h"
+#include "CUdpPacket.hpp"
 
-UDP_Packet::UDP_Packet(QObject *parent) : QObject(parent)
+CUdpPacket::CUdpPacket(QObject *parent) : QObject(parent)
 {
     UdpSocket = new QUdpSocket();
 
@@ -9,7 +9,7 @@ UDP_Packet::UDP_Packet(QObject *parent) : QObject(parent)
     UdpSocket->bind(Raspberry_Pi_Address, UDP_PORT);
     //    connect(UdpSocket,SIGNAL(readyRead()),this,SLOT(readPacket()));
 }
-UDP_Packet::~UDP_Packet()
+CUdpPacket::~CUdpPacket()
 {
     if(UdpSocket->isOpen())
     {
@@ -19,7 +19,7 @@ UDP_Packet::~UDP_Packet()
     }
 }
 
-void UDP_Packet::readPacket()
+void CUdpPacket::readPacket()
 {
     QByteArray rxData;
     QHostAddress sender;
