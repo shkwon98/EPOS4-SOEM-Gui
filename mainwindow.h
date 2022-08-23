@@ -4,10 +4,7 @@
 #include <QMainWindow>
 #include <QtNetwork>
 
-#include "Macro.h"
-
-#include "cdatalogger.h"
-
+#include "socketDef.h"
 #include "tcp_packet.h"
 //#include "udp_packet.h"
 
@@ -50,7 +47,6 @@ private slots:
     void on_pushButton_CST_Stop_clicked();
 
     void readPacket();
-    void on_pushButton_Data_Logging_clicked();
 
 
 private:
@@ -59,7 +55,7 @@ private:
     TCP_Packet *pTcpPacket;
     bool connectFlag = false;
 
-    //    UDP_Packet *pUdpPacket;
+//    UDP_Packet *pUdpPacket;
     QUdpSocket *UdpSocket;
     short header;
     int decodeIndex;
@@ -68,11 +64,7 @@ private:
     int rxCount = 0;
 
     LOG_DATA logData;
-    bool bRegLogging = false;
-    CDataLogger mDataLogger;
-    bool bLogCheck;
-
     TASK_PARAM taskParam;
-
 };
+
 #endif // MAINWINDOW_H

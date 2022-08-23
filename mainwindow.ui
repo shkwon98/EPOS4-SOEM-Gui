@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>EPOS4 SOEM GUI</string>
+   <string>Ansur_SOEM_GUI</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QPushButton" name="exitButton">
@@ -60,7 +60,7 @@
       <x>530</x>
       <y>20</y>
       <width>351</width>
-      <height>121</height>
+      <height>136</height>
      </rect>
     </property>
     <layout class="QFormLayout" name="InputStatus">
@@ -423,78 +423,6 @@
      </layout>
     </widget>
    </widget>
-   <widget class="QWidget" name="layoutWidget">
-    <property name="geometry">
-     <rect>
-      <x>940</x>
-      <y>160</y>
-      <width>321</width>
-      <height>262</height>
-     </rect>
-    </property>
-    <layout class="QGridLayout" name="gridLayout">
-     <item row="0" column="0">
-      <widget class="QLabel" name="label_12">
-       <property name="font">
-        <font>
-         <family>Arial</family>
-        </font>
-       </property>
-       <property name="layoutDirection">
-        <enum>Qt::LeftToRight</enum>
-       </property>
-       <property name="text">
-        <string>Log File Name : </string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="1">
-      <widget class="QTextEdit" name="textEdit_LogFileName"/>
-     </item>
-     <item row="1" column="0">
-      <widget class="QLabel" name="label_13">
-       <property name="font">
-        <font>
-         <family>Arial</family>
-        </font>
-       </property>
-       <property name="layoutDirection">
-        <enum>Qt::LeftToRight</enum>
-       </property>
-       <property name="text">
-        <string>Logging Time : </string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="1">
-      <widget class="QTextEdit" name="textEdit_LogTimer">
-       <property name="readOnly">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="0" colspan="2">
-      <widget class="QPushButton" name="pushButton_Data_Logging">
-       <property name="font">
-        <font>
-         <family>Arial</family>
-         <weight>75</weight>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="text">
-        <string>Data Logging</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </widget>
    <widget class="QGroupBox" name="groupBox3_Position_Control">
     <property name="geometry">
      <rect>
@@ -705,7 +633,7 @@
       </font>
      </property>
      <property name="text">
-      <string>EPOS4 Motor EtherCAT Controller</string>
+      <string>ANSUR SOEM   Remote GUI Controller</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -736,9 +664,6 @@
   <tabstop>targetValue_2</tabstop>
   <tabstop>pushButton_CST_Run</tabstop>
   <tabstop>udpButton</tabstop>
-  <tabstop>textEdit_LogFileName</tabstop>
-  <tabstop>textEdit_LogTimer</tabstop>
-  <tabstop>pushButton_Data_Logging</tabstop>
  </tabstops>
  <resources/>
  <connections/>

@@ -6,28 +6,21 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-//    this->setFixedSize(530, 600);
 
     pTcpPacket = new TCP_Packet();
 
-
-
     QStringList RunTaskTypeCategory;
-
     RunTaskTypeCategory.append("None");
     RunTaskTypeCategory.append("Motor Control");
-
     ui->comboBox_RunTask_Type->addItems(RunTaskTypeCategory);
 
 
     QStringList RunTaskMotionCategory;
-
 //    RunTaskMotionCategory.append("X");
 //    RunTaskMotionCategory.append("Y");
     RunTaskMotionCategory.append("Z");
 //    RunTaskMotionCategory.append("Circle");
 //    RunTaskMotionCategory.append("Custom");
-
     ui->comboBox_RunTask_Motion->addItems(RunTaskMotionCategory);
 }
 MainWindow::~MainWindow()
@@ -253,91 +246,8 @@ void MainWindow::readPacket()
                 ui->actualPosition->setText(QString::number(logData.actualPosition));
                 rxCount = 0;
             }
-
-
-            // Logging State
-            static int PlotCnt = 0;
-            static unsigned int timeMsLogInit = 0;
-            static bool timeLogFlag = true;
-
-//            if(bLogCheck)
-//            {
-////                mMutex.lock();
-
-//                if(timeLogFlag)
-//                {
-//                    timeMsLogInit = logData.timeStamp;
-//                    timeLogFlag = false;
-//                }
-
-//                unsigned int timeMsLog = logData.timeStamp - timeMsLogInit;
-//                unsigned int timeSecLog = (unsigned int)(((float)timeMsLog)/1000.0);
-//                unsigned int timeMinuteLog = (unsigned int)(((float)timeSecLog)/60.0);
-
-//                if(PlotCnt % 999 == 0)
-//                {
-//                    QString qTimeLog;
-//                    qTimeLog.sprintf("%02d Minute %02d Sec",timeMinuteLog,timeSecLog-timeMinuteLog*60);
-
-//                    ui->textEdit_LogTimer->setText(qTimeLog);
-//                }
-//                mDataLogger.setQueuePacket(logData);
-
-////                mMutex.unlock();
-//            }
-//            else
-//            {
-//                timeLogFlag = true;
-//            }
             break;
         }
         rxCount++;
-    }
-}
-
-void MainWindow::on_pushButton_Data_Logging_clicked()
-{
-    qDebug() << "Logging Button Click!";
-
-    if(bRegLogging == false)
-    {
-        QString logName = ui->textEdit_LogFileName->toPlainText();
-        mDataLogger.setLogFileName(logName);
-    }
-
-    static bool bCheck = ui->pushButton_Data_Logging->isChecked();
-
-    bCheck = bCheck ^ 1;
-
-    if(bCheck)
-    {
-        bLogCheck = bCheck;
-        qDebug() << "Click State 111!" << bLogCheck;
-
-        this->ui->pushButton_Data_Logging->setText("Logging...");
-        this->ui->pushButton_Data_Logging->setStyleSheet("QPushButton{ background-color: red }");
-
-        AppendText("Logging Start!");
-
-        mDataLogger.LogStart();
-
-        //        mDataLogger.start();
-        mDataLogger.bRun = true;
-    }
-    else
-    {
-        bLogCheck = bCheck;
-        qDebug() << "Click State 222!" << bLogCheck;
-
-        this->ui->pushButton_Data_Logging->setText("Data Logging");
-        this->ui->pushButton_Data_Logging->setStyleSheet("QPushButton{ background-color: white }");
-
-        AppendText("Loggint Stop!");
-
-        mDataLogger.bRun = false;
-
-        mDataLogger.LogStop();
-
-        //        mDataLogger.quit();
     }
 }
