@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1353</width>
-    <height>696</height>
+    <width>1285</width>
+    <height>688</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -26,35 +26,12 @@
     <property name="font">
      <font>
       <family>Arial</family>
-     </font>
-    </property>
-    <property name="text">
-     <string>Exit</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>60</y>
-      <width>291</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Noto Sans CJK KR</family>
-      <pointsize>13</pointsize>
       <weight>75</weight>
-      <italic>false</italic>
       <bold>true</bold>
      </font>
     </property>
     <property name="text">
-     <string>EPOS4 Motor Control</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
+     <string>Exit</string>
     </property>
    </widget>
    <widget class="QPushButton" name="tcpConnectButton">
@@ -69,6 +46,8 @@
     <property name="font">
      <font>
       <family>Arial</family>
+      <weight>75</weight>
+      <bold>true</bold>
      </font>
     </property>
     <property name="text">
@@ -80,7 +59,7 @@
      <rect>
       <x>530</x>
       <y>20</y>
-      <width>371</width>
+      <width>351</width>
       <height>121</height>
      </rect>
     </property>
@@ -114,7 +93,7 @@
      <rect>
       <x>10</x>
       <y>160</y>
-      <width>351</width>
+      <width>331</width>
       <height>141</height>
      </rect>
     </property>
@@ -136,7 +115,7 @@
       <rect>
        <x>11</x>
        <y>31</y>
-       <width>331</width>
+       <width>311</width>
        <height>101</height>
       </rect>
      </property>
@@ -162,8 +141,8 @@
         <property name="font">
          <font>
           <family>Arial</family>
-          <weight>50</weight>
-          <bold>false</bold>
+          <weight>75</weight>
+          <bold>true</bold>
          </font>
         </property>
         <property name="text">
@@ -201,9 +180,9 @@
    <widget class="QGroupBox" name="groupBox2_Torque_Control">
     <property name="geometry">
      <rect>
-      <x>370</x>
+      <x>350</x>
       <y>160</y>
-      <width>351</width>
+      <width>331</width>
       <height>141</height>
      </rect>
     </property>
@@ -225,7 +204,7 @@
       <rect>
        <x>11</x>
        <y>31</y>
-       <width>331</width>
+       <width>311</width>
        <height>101</height>
       </rect>
      </property>
@@ -235,8 +214,8 @@
         <property name="font">
          <font>
           <family>Arial</family>
-          <weight>50</weight>
-          <bold>false</bold>
+          <weight>75</weight>
+          <bold>true</bold>
          </font>
         </property>
         <property name="text">
@@ -290,8 +269,8 @@
    <widget class="QGroupBox" name="groupBox_6">
     <property name="geometry">
      <rect>
-      <x>920</x>
-      <y>10</y>
+      <x>890</x>
+      <y>20</y>
       <width>381</width>
       <height>131</height>
      </rect>
@@ -423,8 +402,8 @@
         <property name="font">
          <font>
           <family>Arial</family>
-          <weight>50</weight>
-          <bold>false</bold>
+          <weight>75</weight>
+          <bold>true</bold>
          </font>
         </property>
         <property name="focusPolicy">
@@ -447,8 +426,8 @@
    <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
-      <x>970</x>
-      <y>350</y>
+      <x>940</x>
+      <y>160</y>
       <width>321</width>
       <height>262</height>
      </rect>
@@ -505,6 +484,8 @@
        <property name="font">
         <font>
          <family>Arial</family>
+         <weight>75</weight>
+         <bold>true</bold>
         </font>
        </property>
        <property name="text">
@@ -519,7 +500,7 @@
      <rect>
       <x>10</x>
       <y>320</y>
-      <width>711</width>
+      <width>671</width>
       <height>301</height>
      </rect>
     </property>
@@ -539,88 +520,14 @@
     <widget class="QComboBox" name="comboBox_RunTask_Motion">
      <property name="geometry">
       <rect>
-       <x>250</x>
-       <y>70</y>
-       <width>211</width>
+       <x>340</x>
+       <y>30</y>
+       <width>311</width>
        <height>31</height>
       </rect>
      </property>
-    </widget>
-    <widget class="QTextEdit" name="textEdit_RunTask_Repeat">
-     <property name="geometry">
-      <rect>
-       <x>190</x>
-       <y>210</y>
-       <width>91</width>
-       <height>31</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QTextEdit" name="textEdit_RunTask_Displacement">
-     <property name="geometry">
-      <rect>
-       <x>190</x>
-       <y>130</y>
-       <width>91</width>
-       <height>31</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_21">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>210</y>
-       <width>171</width>
-       <height>31</height>
-      </rect>
-     </property>
-     <property name="layoutDirection">
-      <enum>Qt::LeftToRight</enum>
-     </property>
-     <property name="text">
-      <string>Repeat(-1,1,2...)</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_20">
-     <property name="geometry">
-      <rect>
-       <x>90</x>
-       <y>170</y>
-       <width>91</width>
-       <height>31</height>
-      </rect>
-     </property>
-     <property name="layoutDirection">
-      <enum>Qt::LeftToRight</enum>
-     </property>
-     <property name="text">
-      <string>Period(s)</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_19">
-     <property name="geometry">
-      <rect>
-       <x>50</x>
-       <y>130</y>
-       <width>131</width>
-       <height>31</height>
-      </rect>
-     </property>
-     <property name="layoutDirection">
-      <enum>Qt::LeftToRight</enum>
-     </property>
-     <property name="text">
-      <string>Disp(mm)</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     <property name="currentIndex">
+      <number>-1</number>
      </property>
     </widget>
     <widget class="QComboBox" name="comboBox_RunTask_Type">
@@ -628,7 +535,7 @@
       <rect>
        <x>20</x>
        <y>30</y>
-       <width>441</width>
+       <width>311</width>
        <height>31</height>
       </rect>
      </property>
@@ -636,8 +543,8 @@
     <widget class="QPushButton" name="pushButton_SetTaskParam">
      <property name="geometry">
       <rect>
-       <x>20</x>
-       <y>70</y>
+       <x>440</x>
+       <y>200</y>
        <width>211</width>
        <height>34</height>
       </rect>
@@ -646,22 +553,12 @@
       <string>Set Task Param</string>
      </property>
     </widget>
-    <widget class="QTextEdit" name="textEdit_RunTask_Period">
-     <property name="geometry">
-      <rect>
-       <x>190</x>
-       <y>170</y>
-       <width>91</width>
-       <height>31</height>
-      </rect>
-     </property>
-    </widget>
     <widget class="QPushButton" name="pushButton_CSP_Stop">
      <property name="geometry">
       <rect>
-       <x>240</x>
-       <y>260</y>
-       <width>181</width>
+       <x>340</x>
+       <y>250</y>
+       <width>311</width>
        <height>34</height>
       </rect>
      </property>
@@ -672,10 +569,10 @@
     <widget class="QCheckBox" name="checkBox_RunTask_Apply_Data">
      <property name="geometry">
       <rect>
-       <x>310</x>
-       <y>220</y>
-       <width>171</width>
-       <height>22</height>
+       <x>300</x>
+       <y>200</y>
+       <width>131</width>
+       <height>31</height>
       </rect>
      </property>
      <property name="text">
@@ -688,14 +585,133 @@
     <widget class="QPushButton" name="pushButton_CSP_Run">
      <property name="geometry">
       <rect>
-       <x>40</x>
-       <y>260</y>
-       <width>181</width>
+       <x>20</x>
+       <y>250</y>
+       <width>311</width>
        <height>34</height>
       </rect>
      </property>
      <property name="text">
       <string>Run</string>
+     </property>
+    </widget>
+    <widget class="QWidget" name="layoutWidget">
+     <property name="geometry">
+      <rect>
+       <x>100</x>
+       <y>70</y>
+       <width>481</width>
+       <height>121</height>
+      </rect>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_4">
+      <item row="0" column="0">
+       <widget class="QLabel" name="label_19">
+        <property name="layoutDirection">
+         <enum>Qt::LeftToRight</enum>
+        </property>
+        <property name="text">
+         <string>Disp [mm]</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="label_20">
+        <property name="layoutDirection">
+         <enum>Qt::LeftToRight</enum>
+        </property>
+        <property name="text">
+         <string>Period [s]</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="label_21">
+        <property name="layoutDirection">
+         <enum>Qt::LeftToRight</enum>
+        </property>
+        <property name="text">
+         <string>Repeat (-1,1,2...)</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QDoubleSpinBox" name="RunTask_Displacement">
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QDoubleSpinBox" name="RunTask_Period">
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QSpinBox" name="RunTask_Repeat">
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+        <property name="minimum">
+         <number>-1</number>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </widget>
+   <widget class="QFrame" name="frame">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>30</y>
+      <width>311</width>
+      <height>101</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Panel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QLabel" name="label">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>291</width>
+       <height>81</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Noto Sans CJK KR</family>
+       <pointsize>13</pointsize>
+       <weight>75</weight>
+       <italic>false</italic>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>EPOS4 Motor EtherCAT Controller</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
      </property>
     </widget>
    </widget>
@@ -705,7 +721,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1353</width>
+     <width>1285</width>
      <height>30</height>
     </rect>
    </property>

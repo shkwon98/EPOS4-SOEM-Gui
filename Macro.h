@@ -6,8 +6,8 @@
 
 #define TCP_PORT 2000
 #define UDP_PORT 3000
-#define GUI_PC_IP "192.168.0.9"
-#define RASPBERRY_PI_IP "192.168.0.10"
+#define GUI_PC_IP "192.168.0.55"
+#define RASPBERRY_PI_IP "192.168.0.50"
 
 #define RX_BUFFER_SIZE 1024
 #define TX_BUFFER_SIZE 1024

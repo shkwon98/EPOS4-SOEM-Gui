@@ -22,11 +22,11 @@ MainWindow::MainWindow(QWidget *parent)
 
     QStringList RunTaskMotionCategory;
 
-    RunTaskMotionCategory.append("X");
-    RunTaskMotionCategory.append("Y");
+//    RunTaskMotionCategory.append("X");
+//    RunTaskMotionCategory.append("Y");
     RunTaskMotionCategory.append("Z");
-    RunTaskMotionCategory.append("Circle");
-    RunTaskMotionCategory.append("Custom");
+//    RunTaskMotionCategory.append("Circle");
+//    RunTaskMotionCategory.append("Custom");
 
     ui->comboBox_RunTask_Motion->addItems(RunTaskMotionCategory);
 }
@@ -104,13 +104,9 @@ void MainWindow::on_pushButton_SetTaskParam_clicked()
     int iRunTaskType = ui->comboBox_RunTask_Type->currentIndex();
     int iRunTaskMotion = ui->comboBox_RunTask_Motion->currentIndex();
 
-    QString sRunTaskDisp = ui->textEdit_RunTask_Displacement->toPlainText();
-    QString sRunTaskPeriod = ui->textEdit_RunTask_Period->toPlainText();
-    QString sRunTaskRepeat = ui->textEdit_RunTask_Repeat->toPlainText();
-
-    float fRunTaskDisp = sRunTaskDisp.toFloat();
-    float fRunTaskPeriod = sRunTaskPeriod.toFloat();
-    int iRunTaskRepeat = sRunTaskRepeat.toInt();
+    float fRunTaskDisp = ui->RunTask_Displacement->text().toFloat();
+    float fRunTaskPeriod = ui->RunTask_Period->text().toFloat();
+    int iRunTaskRepeat = ui->RunTask_Repeat->text().toInt();
 
     taskParam.taskType = iRunTaskType;
     taskParam.taskMotion = iRunTaskMotion;
