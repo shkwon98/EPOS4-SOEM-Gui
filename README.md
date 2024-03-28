@@ -1,11 +1,11 @@
-# GUI controller for EPOS4_SOEM Application
+# GUI controller for EPOS4-SOEM Application
 This is a GUI Application to control SOEM (Simple Open EtherCAT Master) EPOS4 Motor Control Application in the remote PC.
 
 ---
 
 ## PREREQUISITES
 + This GUI application was developed with QT Creator installed PC
-+ [EPOS4_SOEM](https://github.com/shkwon98/EPOS4_SOEM) installed Raspberry Pi is required
++ [EPOS4-SOEM](https://github.com/shkwon98/EPOS4-SOEM) installed Raspberry Pi is required
 + Since this program is developed based on TCP&UDP protocol, you must check the IP addresses of your devices and revise the corresponding parts of program code
 
 #### FRAMEWORK:
